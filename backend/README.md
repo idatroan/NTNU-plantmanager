@@ -1,8 +1,8 @@
-# NTNU-plantmanager (to be updated)
+# Plant Manager - Backend
 
-> This is the final repository for a plant manager project.
+> This is the backend for a plant manager project.
 
-[GitHub repo of this project](https://github.com/Idahpews/NTNU-plantmanager)
+[GitHub repo of this project](https://github.com/jostein-tollefsrud/fullstack-plantmanager-backend)
 
 ## Table of contents
 
@@ -19,7 +19,7 @@
 ## General info
 
 The department of design needs an administrative tool to monitor the state of the
-plants and its health. This project takes care of both backend API and the frontend.
+plants and its health. This project takes care of the backend API. In this project we only setup for users, not the plants.
 
 &nbsp;
 
@@ -48,11 +48,11 @@ NODE_ENV=development
 DB_STRING=mongodb://localhost:27017/plant-manager
 DB_STRING_PROD=<your production database string>
 PRIVATE_KEY=<super secret key here>
-KEY_ID=<aws keyID>
-SECRET=<aws secret key>
 ```
 
 You need to run both Mongo DB Compass and MongoDB Community Edition. 
+
+[Download MongoDB from here](https://www.mongodb.com/try/download/compass).
 
 [Download MongoDB Community Edition from here](https://docs.mongodb.com/manual/administration/install-community/).
 
