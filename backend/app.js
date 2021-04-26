@@ -81,6 +81,9 @@ app.use(express.urlencoded({extended: true}));
 // Imports all of the routes from ./routes/index.js
 app.use(require('./routes'));
 
+// Upload Image
+app.use(express.static('../frontend/public/images'));
+
 // Swagger documentation route
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
 

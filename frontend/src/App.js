@@ -15,7 +15,6 @@ import LandingPageScreen from "./screens/LandingPageScreen";
 import Container from "./components/container/Container";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
-import ResetPassword from "./components/forgotten-password/ResetPassword";
 
 function App() {
 
