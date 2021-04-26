@@ -1,26 +1,26 @@
-.user {
+.plant {
     border-bottom: 1px solid rgb(229, 229, 229);
     padding: 2em 0;
 }
 
-.user:last-of-type {
+.plant:last-of-type {
     border-bottom: none;
     padding-bottom: 0;
 }
 
-.user:first-of-type {
+.plant:first-of-type {
     padding-top: .5em;
 }
 
-.user > div {
+.plant > div {
     padding: .2em 0;
 }
 
-.user div:last-of-type {
+.plant div:last-of-type {
     margin-bottom: 1em;
 }
 
-.user a {
+.plant a {
     margin-right: 1em;
 }
 
@@ -42,7 +42,7 @@
     }
 } */
 
-/* @media screen and (min-width: 600px) {
+/* @media screen and (min-width: 620px) {
     .sorting {
         position: absolute;
         top: 2.7em;

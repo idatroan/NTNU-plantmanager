@@ -61,7 +61,7 @@ const UserList = () => {
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
             {successDelete && <MessageBox variant="success">User deleted!</MessageBox>}
             <div className="component-container">
-                <h2>UserList</h2>
+                <h2>User's</h2>
                 <form className="sorting">
                     <label htmlFor="sort">Sort by</label>
                     <select name="sort" id="sort" value={sort} onChange={(e) => setSort(e.target.value)}>

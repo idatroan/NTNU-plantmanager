@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import UserList from "../components/user-list/UserList";
+import PlantList from "../components/plant-list/PlantList";
 // import { Link } from "react-router-dom";
+import './DashboardScreen.css';
+import { Link } from "react-router-dom";
 
 const DashboardScreen = (props) => {
 
@@ -17,8 +20,12 @@ const DashboardScreen = (props) => {
 
     return (
         <div>
-            <h1>Dashboard</h1>
-            <UserList />
+            <h1 className="no-margin">Dashboard</h1>
+            <Link className="subheader-link" to="#">Create a new plant</Link>
+            <div className="dashboard-content-container">
+                <PlantList />
+                <UserList />
+            </div>
         </div>
     )
 
