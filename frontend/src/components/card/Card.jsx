@@ -17,17 +17,17 @@ const Card = ({
     const fertilizingOverdue = fertilizing < 0;
 
     return (
-        <div className={`card ${warning && 'warning'}`}>
+        <div className={`card`}>
             <div className="card__info">
                 <div className="card__header">{header}</div>
                 <div className="card__subheader">{subheader}</div>
 
-                {wateringToday && <div>Plant need watering today!</div>}
-                {wateringOverdue && <div>{`Watering is overdue by ${watering} days!`}</div>}
+                {wateringToday && <div className={`${warning && 'warning'}`}>Plant need watering today!</div>}
+                {wateringOverdue && <div className={`${warning && 'warning'}`}>{`Watering is overdue by ${watering} days!`}</div>}
                 {watering > 0 && <div>{`Next watering in ${watering} days`}</div>}
 
-                {fertilizingToday && <div>Plant need fertilizing today!</div>}
-                {fertilizingOverdue && <div>{`Fertilizing is overdue by ${fertilizing} days!`}</div>}
+                {fertilizingToday && <div className={`${warning && 'warning'}`}>Plant need fertilizing today!</div>}
+                {fertilizingOverdue && <div className={`${warning && 'warning'}`}>{`Fertilizing is overdue by ${fertilizing} days!`}</div>}
                 {fertilizing > 0 && <div>{`Next fertilizing in ${fertilizing} days`}</div>}
 
                 <Link className="card__link" to="#">View details</Link>
