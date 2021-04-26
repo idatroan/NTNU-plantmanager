@@ -59,6 +59,8 @@ const LoginScreen = (props) => {
                     <Button type="submit" value="Log in" variant="btn--primary--solid" size="btn--medium"/>
                 </form>
                 <Link className="margin-top" to="/forgot">Forgot Password?</Link>
+                <br/>
+                <Link className="margin-top" to="/register">Don't have an account? Register here</Link>
             </div>
         </div>
     )

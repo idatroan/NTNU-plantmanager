@@ -13,41 +13,6 @@ const {
 //     res.status(200).json({ success: true, message: "You are successfully authenticated to this route!"});
 // });
 
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: The user managing api
- */
-
-/**
- * -------------- CREATE --------------
- */
-
-/**
- * @swagger
- * /users:
- *   post:
- *     summary: Create a new user
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       200:
- *         description: A new user is created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User' 
- *       500:
- *         description: Some server error  
- */
- router.post('/', checkIfManager, createUser);
-//  router.post('/', createUser);
 
 /**
  * -------------- READ --------------

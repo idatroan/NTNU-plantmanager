@@ -8,39 +8,6 @@ const utils = require('../lib/utils');
  */
 
 /**
- * -------------- POST /users --------------
- */
-/**
- * Create a new user
- * @param {Object} req - Information about the HTTP request
- * @param {Object} res - Use to send back the desired HTTP response
- * @returns {Promise<Object>} - Store a new user object in the database
- */
-const createUser = async (req, res) => {
-    const { firstName, lastName, email, role, password } = req.body;
-
-    const registeredEmail = await User.findOne({ email: email });
-    if (registeredEmail) return res.status(400).json({ message: 'This email is already registered!' });
-
-    const hashedPassword = await utils.genPassword(password);
-
-    const newUser = new User({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        role: role,
-        password: hashedPassword
-    });
-
-    try {
-        newUser.save()
-        res.status(200).json(newUser);
-    } catch (error) {
-        res.status(500).json({ message: error });
-    }
-}
-
-/**
  * -------------- GET /users/:id --------------
  */
 /**
@@ -146,7 +113,6 @@ const deleteUserById = async (req, res) => {
 }
 
 module.exports = {
-    createUser,
     getUserById,
     getAllUsers,
     updateUserById,

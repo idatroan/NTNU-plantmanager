@@ -13,7 +13,6 @@ const UserRegister = ({parentProps}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [createdUser, setCreatedUser] = useState('');
@@ -34,12 +33,11 @@ const UserRegister = ({parentProps}) => {
         if (password !== confirmPassword) {
             alert('Passwords do not match!')
         } else {
-            dispatch(register(firstName, lastName, email, role, password))
+            dispatch(register(firstName, lastName, email, password))
             setCreatedUser(`${firstName} ${lastName} was created!`)
             setFirstName('')
             setLastName('')
             setEmail('')
-            setRole('')
             setPassword('')
             setConfirmPassword('')
         }
@@ -76,15 +74,6 @@ const UserRegister = ({parentProps}) => {
                         value={email} 
                         required={true} 
                         onChange={(e) => setEmail(e.target.value)} />
-                    
-                    {/* <Select label="Role"/> */}
-                    
-                    <label htmlFor="role">User role</label>
-                    <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)} required>
-                        <option value="">Select role...</option>
-                        <option value="user">User</option>
-                        <option value="manager">Manager</option>
-                    </select>
 
                     <TextInput 
                         label="Password" 

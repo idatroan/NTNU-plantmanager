@@ -93,17 +93,16 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const register = (firstName, lastName, email, role, password) => async (dispatch) => {
+export const register = (firstName, lastName, email, password) => async (dispatch) => {
     dispatch({
         type: actionTypes.USER_REGISTER_REQUEST,
         payload: { email, password },
     })
     try {
-        const { data } = await axios.post('/users', {
+        const { data } = await axios.post('/register', {
             firstName, 
             lastName, 
             email, 
-            role, 
             password,
         }, {
             headers: { Authorization: `Bearer ${token}` }

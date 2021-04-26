@@ -27,7 +27,7 @@ function App() {
                     <Route path="/dashboard" component={DashboardScreen} />
                     <Route path="/users/edit/:id" component={UserEditScreen} />
                     <Route path="/login" component={LoginScreen} />
-                    <Route path="/create" component={RegisterUserScreen} />
+                    <Route path="/register" component={RegisterUserScreen} />
                     <Route path="/profile/:id" component={ProfileScreen} />
                     <Route path="/forgot" component={ForgotPasswordScreen} />
                     <Route path="/reset/:id" component={ResetPasswordScreen} />
