@@ -1,5 +1,5 @@
 const Plant = require('../models/plant');
-const upload = require('../lib/uploadImage');
+//const upload = require('../lib/uploadImage');
 
 const createPlant = async (req, res) => {
     const { name, location, waterFrequency, fertilizingFrequency, light } = req.body;
@@ -15,14 +15,6 @@ const createPlant = async (req, res) => {
     });
 
     try {
-
-        /*upload(req, res, (err) => {
-            if (err) {
-              res.sendStatus(500);
-            }
-            res.send(req.file);
-          });*/
-
         newPlant.save();
         res.status(200).json(newPlant);
     } catch (error) {

@@ -1,0 +1,24 @@
+.plant-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15em;
+    justify-content: center;
+}
+
+.plant-container h2 {
+    font-size: 22px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.plant-container p {
+    font-size: 16px;
+    margin-bottom: 1em;
+    font-weight: 300;
+}
+
+img {
+    border-radius: 5px;
+    object-fit: none;
+    margin-bottom: 1em;
+}

@@ -37,6 +37,10 @@
     padding-top: 1em;
     margin-top: auto;
 }
+.card__button {
+    display: inline-block;
+    align-self: flex-end;
+}
 
 .card__image {
     order: -1;

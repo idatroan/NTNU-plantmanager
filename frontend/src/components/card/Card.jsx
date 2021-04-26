@@ -31,6 +31,7 @@ const Card = ({
                 {fertilizing > 0 && <div>{`Next fertilizing in ${fertilizing} days`}</div>}
 
                 <Link className="card__link" to="#">View details</Link>
+                <button className="card__button">Water</button>
             </div>
             <img className="card__image" src={imageSrc} alt={altText} />
         </div>
