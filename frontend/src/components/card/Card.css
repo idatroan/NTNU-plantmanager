@@ -52,3 +52,7 @@
     background-color: #ff3232;
     color: white;
 }
+
+.warning + .warning {
+    margin-top: 1em;
+}
