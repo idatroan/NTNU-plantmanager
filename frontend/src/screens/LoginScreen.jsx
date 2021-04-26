@@ -13,10 +13,12 @@ const LoginScreen = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+    // const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
 
     const userLogin = useSelector(state => state.userLogin);
     const { loading, error, userInfo } = userLogin;
+
+    console.log(userInfo)
 
     const dispatch = useDispatch();
 
@@ -27,9 +29,9 @@ const LoginScreen = (props) => {
 
     useEffect(() => {
         if (userInfo) {
-            props.history.push(redirect);
+            props.history.push(`/profile/${userInfo.user.id}`);
         }
-    }, [userInfo, props.history, redirect])
+    }, [userInfo, props.history])
 
     return (
         <div>

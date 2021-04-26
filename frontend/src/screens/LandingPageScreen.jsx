@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Card from "../components/card/Card"
 
 const plants = [
@@ -54,7 +55,49 @@ const plants = [
 
 const LandingPageScreen = () => {
 
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
     const [sort, setSort] = useState('watering');
+
+    useEffect(() => {
+        if (userInfo) {
+            if ((JSON.parse(localStorage.getItem('notified')) === false) || !localStorage.getItem('notified')) {
+                plants.forEach(plant => {
+                    if ((plant.watering === 0) || (plant.watering < 0) || (plant.fertilizing === 0) || (plant.fertilizing < 0)) {
+                        localStorage.setItem('notify', 'true')
+                    }
+                })
+            }
+            
+            if (JSON.parse(localStorage.getItem('notify'))) {
+                plants.forEach(plant => {
+                    console.log(plant.watering)
+                    if (plant.watering === 0) {
+                        alert(`${plant.title} need watering today!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                    if (plant.watering < 0) {
+                        alert(`Watering for ${plant.title} is overdue by ${plant.watering} days!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                    if(plant.fertilizing === 0) {
+                        alert(`Fertilizing for ${plant.title} is overdue by ${plant.fertilizing} days!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                        
+                    }
+                    if(plant.fertilizing < 0) {
+                        alert(`${plant.title} need fertilizing today!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                })
+            }
+        }
+    }, [])
 
     // Sort by role, first name or last name
     if (plants) {
