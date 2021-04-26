@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import UserList from "../components/user-list/UserList";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const DashboardScreen = (props) => {
 
@@ -17,8 +17,7 @@ const DashboardScreen = (props) => {
 
     return (
         <div>
-            <h1 className="no-margin">Dashboard</h1>
-            <Link to="/create" className="subheader-link">Create a new user</Link>
+            <h1>Dashboard</h1>
             <UserList />
         </div>
     )
