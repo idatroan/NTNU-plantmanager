@@ -4,48 +4,56 @@ import Card from "../components/card/Card"
 
 const plants = [
     {
+        _id: 1,
         title: "Grønne leif",
         subtitle: "Aloe vera",
         watering: 5,
         fertilizing: 46,
     },
     {
+        _id: 2,
         title: "Gule guri",
         subtitle: "Thymus",
         watering: 8,
         fertilizing: 12,
     },
     {
+        _id: 3,
         title: "Lilla laila",
         subtitle: "Celastrus",
         watering: 12,
         fertilizing: 1,
     },
     {
+        _id: 4,
         title: "Blåe ola",
         subtitle: "Lavandula",
         watering: 1,
         fertilizing: 59,
     },
     {
+        _id: 5,
         title: "Røde øde",
         subtitle: "Populus",
         watering: -3,
         fertilizing: 134,
     },
     {
+        _id: 6,
         title: "Turkise lise",
         subtitle: "Crocus",
         watering: 12,
         fertilizing: 40,
     },
     {
+        _id: 7,
         title: "Hvite pelle",
         subtitle: "Adonis",
         watering: 0,
         fertilizing: -4,
     },
     {
+        _id: 8,
         title: "Oransje kari",
         subtitle: "Betula",
         watering: 3,
@@ -114,7 +122,7 @@ const LandingPageScreen = () => {
         }
 
     const plantCards = plants.map(plant => {
-        return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing}/>
+        return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing} _id={plant._id}/>
     })
 
     return (

@@ -7,7 +7,8 @@ const Card = ({
     header,
     subheader,
     watering,
-    fertilizing
+    fertilizing,
+    _id
 }) => {
 
     const warning = (fertilizing < 0) || (watering < 0) || (fertilizing === 0) || (watering === 0);
@@ -30,7 +31,7 @@ const Card = ({
                 {fertilizingOverdue && <div className={`${warning && 'warning'}`}>{`Fertilizing is overdue by ${fertilizing} days!`}</div>}
                 {fertilizing > 0 && <div>{`Next fertilizing in ${fertilizing} days`}</div>}
 
-                <Link className="card__link" to="#">View details</Link>
+                <Link className="card__link" to={`plants/${_id}`}>View details</Link>
                 <button className="card__button">Water</button>
             </div>
             <img className="card__image" src={imageSrc} alt={altText} />
