@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import { getUserDetailsReducer, getUsersReducer, userDeleteReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducers';
+import { getPlantDetailsReducer, getPlantsReducer } from './reducers/plantReducers';
 
 const initialState = {
     userLogin: {
@@ -19,6 +20,9 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
     userUpdateProfile: userUpdateProfileReducer,
     deleteUser: userDeleteReducer,
+    // Plant reducers
+    getPlants: getPlantsReducer,
+    getPlantDetails: getPlantDetailsReducer,
 });
 
 const middleware = [thunk];

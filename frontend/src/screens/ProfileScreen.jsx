@@ -9,7 +9,6 @@ import { getUserDetails, updateUser, updateUserProfile } from '../redux/actions/
 import './ProfileScreen.css';
 import Loading from '../components/loading/Loading';
 import MessageBox from '../components/message-box/MessageBox';
-import { USER_UPDATE_PROFILE_RESET, USER_UPDATE_RESET } from '../redux/constants/userConstants';
 import TextInput from '../components/text-input/TextInput';
 import Button from '../components/button/Button';
 
