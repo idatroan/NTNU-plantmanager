@@ -2,16 +2,15 @@ const Plant = require('../models/plant');
 //const upload = require('../lib/uploadImage');
 
 const createPlant = async (req, res) => {
-    const { name, location, waterFrequency, fertilizingFrequency, light } = req.body;
+    const { name, type, location, waterFrequency, fertilizingFrequency, light } = req.body;
 
     const newPlant = new Plant({
         name: name,
+        type: type,
         location: location,
-        plantNeeds: {
-            waterFrequency: waterFrequency,
-            fertilizingFrequency: fertilizingFrequency,
-            light: light
-        }
+        waterFrequency: waterFrequency,
+        fertilizingFrequency: fertilizingFrequency,
+        light: light
     });
 
     try {
@@ -45,13 +44,14 @@ const getAllPlants = async (req, res) => {
 const updatePlantById = async (req, res) => {
     try {
         const plant = await Plant.findById(req.params.id);
-        const { name, location, waterFrequency, fertilizingFrequency, light } = req.body;
+        const { name, type, location, waterFrequency, fertilizingFrequency, light } = req.body;
 
         if (name) plant.name = name;
+        if (type) plant.type = type;
         if (location) plant.location = location;
-        if (waterFrequency) plant.plantNeeds.waterFrequency = waterFrequency;
-        if (fertilizingFrequency) plant.plantNeeds.fertilizingFrequency = fertilizingFrequency;
-        if (light) plant.plantNeeds.light = light;
+        if (waterFrequency) plant.waterFrequency = waterFrequency;
+        if (fertilizingFrequency) plant.fertilizingFrequency = fertilizingFrequency;
+        if (light) plant.light = light;
 
         await plant.save();
         res.status(200).json(`${plant.name} have been updated!`);

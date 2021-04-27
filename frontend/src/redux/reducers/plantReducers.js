@@ -6,13 +6,13 @@ export const getPlantsReducer = (state = { plants: [] }, action) => {
             return {
                 ...state,
                 loading: true,
-                users: []
+                plants: []
             }
         case actionTypes.GET_PLANT_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                users: action.payload
+                plants: action.payload
             }
         case actionTypes.GET_PLANT_FAIL:
             return {
@@ -35,7 +35,7 @@ export const getPlantDetailsReducer = (state = { plant: {} }, action) => {
             return {
                 ...state,
                 loading: false,
-                user: action.payload
+                plant: action.payload
             }
         case actionTypes.GET_PLANT_DETAILS_FAIL:
             return {
@@ -46,7 +46,7 @@ export const getPlantDetailsReducer = (state = { plant: {} }, action) => {
         case actionTypes.GET_PLANT_DETAILS_RESET:
             return {
                 ...state,
-                user: {}
+                plant: {}
             }
         default:
             return state

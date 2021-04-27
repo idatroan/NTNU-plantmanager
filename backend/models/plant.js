@@ -6,42 +6,42 @@ const PlantSchema = new Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        required: true
+    },
     location: {
         type: String,
         required: true,
     },
-    plantNeeds: {
-        waterFrequency: {
-            type: Number,
-            required: true
-        },
-        fertilizingFrequency: {
-            type: Number,
-            required: true,
-        },
-        light: {
-            type: String,
-            enum: ['shadow', 'direct sunlight', 'indirect sunlight'],
-            required: true
-        }
+    waterFrequency: {
+        type: Number,
+        required: true
     },
-    meta: {
-        lastWatered: {
-            byUserId: {
-                type: String,
-            },
-            atTime: {
-                type: Date,
-            }
-        },
-        lastFertilized: {
-            byUserId: {
-                type: String,
-            },
-            atTime: {
-                type: Date,
-            }
-        }
+    fertilizingFrequency: {
+        type: Number,
+        required: true,
+    },
+    light: {
+        type: String,
+        enum: ['shadow', 'direct sunlight', 'indirect sunlight'],
+        required: true
+    },
+    lastWateredByUser: {
+        type: String,
+        default: ''
+    },
+    lastWateredAtTime: {
+        type: Date,
+        default: 'Jan 1, 1970'
+    },
+    lastFertilizedByUser: {
+        type: String,
+        default: ''
+    },
+    lastFertilizedAtTime: {
+        type: Date,
+        default: 'Jan 1, 1970'
     }
 });
 

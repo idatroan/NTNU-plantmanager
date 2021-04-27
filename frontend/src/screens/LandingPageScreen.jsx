@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getPlants as listPlants } from '../redux/actions/plantActions';
 import Card from "../components/card/Card"
 
 const plants = [
@@ -68,7 +69,15 @@ const LandingPageScreen = () => {
 
     const [sort, setSort] = useState('watering');
 
+    /*const getPlants = useSelector(state => state.getPlants);
+    const { plants, loading, error } = getPlants;
+
+    const dispatch = useDispatch;*/
+
     useEffect(() => {
+
+        //dispatch(listPlants());
+
         if (userInfo) {
             if (userInfo.user.role === 'user') return;
             if ((JSON.parse(localStorage.getItem('notified')) === false) || !localStorage.getItem('notified')) {
@@ -137,6 +146,9 @@ const LandingPageScreen = () => {
                     </select>
                 </form>
                 <div className="card-container">
+                    {/* plants.map(plant => (
+                        <Card header={plant.name} subheader={plant.type} watering="2" fertilizing="2" _id={plant._id} user={userInfo} />
+                    ))*/}
                     {plantCards}
                 </div>
             </div>

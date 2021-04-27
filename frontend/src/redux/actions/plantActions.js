@@ -11,17 +11,17 @@ if (userInfo) {
 
 export const getPlants = () => async (dispatch) => {
     try {
-        dispatch({ type: actionTypes.GET_PLANTS_REQUEST });
+        dispatch({ type: actionTypes.GET_PLANT_REQUEST });
 
         const { data } = await axios.get('/plants');
 
         dispatch({ 
-            type: actionTypes.GET_PLANTS_SUCCESS,
+            type: actionTypes.GET_PLANT_SUCCESS,
             payload: data
         });
     } catch (error) {
         dispatch({
-            type: actionTypes.GET_PLANTS_FAIL,
+            type: actionTypes.GET_PLANT_FAIL,
             payload: 
                 error.response && error.response.data.message 
                     ? error.response.data.message 
@@ -51,17 +51,18 @@ export const getPlantDetails = (id) => async (dispatch) => {
     }
 };
 
-export const createPlant = (firstName, lastName, email, password) => async (dispatch) => {
+export const createPlant = (name, location, waterFrequency, fertilizingFrequency, light) => async (dispatch) => {
     dispatch({
         type: actionTypes.PLANT_CREATE_REQUEST,
-        payload: { email, password },
+        payload: { name, location, waterFrequency, fertilizingFrequency, light },
     })
     try {
         const { data } = await axios.post('/register', {
-            firstName, 
-            lastName, 
-            email, 
-            password,
+            name, 
+            location, 
+            waterFrequency, 
+            fertilizingFrequency,
+            light
         }, {
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -80,26 +81,27 @@ export const createPlant = (firstName, lastName, email, password) => async (disp
     }
 };
 
-export const updateUser = (firstName, lastName, email, role, id) => async (dispatch) => {
+export const updatePlant = (name, location, waterFrequency, fertilizingFrequency, light, id) => async (dispatch) => {
     dispatch({
-        type: actionTypes.USER_UPDATE_REQUEST
+        type: actionTypes.PLANT_UPDATE_REQUEST
     })
     try {
-        const { data } = await axios.put(`/users/${id}`, {
-            firstName, 
-            lastName, 
-            email, 
-            role, 
+        const { data } = await axios.put(`/plants/${id}`, {
+            name, 
+            location, 
+            waterFrequency, 
+            fertilizingFrequency,
+            light
         }, {
             headers: { Authorization: `Bearer ${token}` }
         });
         dispatch({
-            type: actionTypes.USER_UPDATE_SUCCESS,
+            type: actionTypes.PLANT_UPDATE_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: actionTypes.USER_UPDATE_FAIL,
+            type: actionTypes.PLANT_UPDATE_FAIL,
             payload:
                 error.response && error.response.data.message 
                     ? error.response.data.message 
@@ -108,22 +110,22 @@ export const updateUser = (firstName, lastName, email, role, id) => async (dispa
     }
 };
 
-export const userDelete = (id) => async (dispatch) => {
+export const plantDelete = (id) => async (dispatch) => {
     dispatch({
-        type: actionTypes.USER_DELETE_REQUEST, 
+        type: actionTypes.PLANT_DELETE_REQUEST, 
         payload: id
     })
     try {
-        const { data } = await axios.delete(`/users/${id}`, {
+        const { data } = await axios.delete(`/plants/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         dispatch({
-            type: actionTypes.USER_DELETE_SUCCESS,
+            type: actionTypes.PLANT_DELETE_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: actionTypes.USER_DELETE_FAIL,
+            type: actionTypes.PLANT_DELETE_FAIL,
             payload:
                 error.response && error.response.data.message 
                     ? error.response.data.message 
