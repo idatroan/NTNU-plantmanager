@@ -70,6 +70,7 @@ const LandingPageScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
+            if (userInfo.user.role === 'user') return;
             if ((JSON.parse(localStorage.getItem('notified')) === false) || !localStorage.getItem('notified')) {
                 plants.forEach(plant => {
                     if ((plant.watering === 0) || (plant.watering < 0) || (plant.fertilizing === 0) || (plant.fertilizing < 0)) {
@@ -122,7 +123,7 @@ const LandingPageScreen = () => {
         }
 
     const plantCards = plants.map(plant => {
-        return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing} _id={plant._id}/>
+        return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing} _id={plant._id} user={userInfo}/>
     })
 
     return (

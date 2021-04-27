@@ -39,18 +39,7 @@ const ProfileScreen = (props) => {
     const userUpdate = useSelector(state => state.userUpdate);
     const { loading: userLoadingUpdate, error: userErrorUpdate, success: userSuccessUpdate } = userUpdate;
 
-    // useEffect(() => {
-    //     if (user && props.match.params.id !== user._id) {
-    //         dispatch(getUserDetails(props.match.params.id))
-    //     };
-    // }, [dispatch, user, props]);
-
     useEffect(() => {
-        // if (successUpdate) {
-        //     dispatch({type: USER_UPDATE_PROFILE_RESET})
-        // } else if (userSuccessUpdate) {
-        //     dispatch({type: USER_UPDATE_RESET})
-        // }
         if (user && props.match.params.id !== user._id) {
             dispatch(getUserDetails(props.match.params.id))
         } 
@@ -139,6 +128,7 @@ const ProfileScreen = (props) => {
                                     <label htmlFor="role">Role</label>
                                     <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
                                         <option value="user">User</option>
+                                        <option value="gardener">Gardener</option>
                                         <option value="manager">Manager</option>
                                     </select>
                                 </>

@@ -67,8 +67,6 @@ const UserEditScreen = (props) => {
             {loading ? <Loading/> : error ? <MessageBox variant="danger">{error}</MessageBox> : (
                 <>
                 <h1>Edit {user.firstName} {user.lastName}</h1>
-                {/* {updated && 'updated user'} */}
-                {/* <EditUser user={user} loggedInUser={userInfo} onUpdate={handleUpdate} /> */}
                 {loadingUpdate && <Loading />}
                 {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
                 {updated && <MessageBox variant="success">User is updated</MessageBox>}
@@ -102,6 +100,7 @@ const UserEditScreen = (props) => {
                         <label htmlFor="role">Role</label>
                         <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
                             <option value="user">User</option>
+                            <option value="gardener">Gardener</option>
                             <option value="manager">Manager</option>
                         </select>
 

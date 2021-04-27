@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './Card.css';
 import Button from '../button/Button';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Card = ({
     imageSrc = "assets/img/default-plant.jpg", 
@@ -10,12 +11,19 @@ const Card = ({
     subheader,
     watering,
     fertilizing,
-    _id
+    _id,
 }) => {
 
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
+    let canViewWaterBtn = false;
+    if (userInfo) {
+        const manager = userInfo.user.role === 'manager';
+        const gardener = userInfo.user.role === 'gardener';
+        canViewWaterBtn = manager || gardener;
+    }
+    
     const warning = (fertilizing === 0) || (watering === 0);
     const danger = (fertilizing < 0) || (watering < 0);
     const wateringToday = watering === 0;
@@ -39,7 +47,7 @@ const Card = ({
 
                 <div className="card__actions">
                     <Link className="card__link" to={`plants/${_id}`}>View details</Link>
-                    {userInfo && <Button className="card__button" size="btn--small" value="Water" />}
+                    {canViewWaterBtn && <Button className="card__button" size="btn--small" value="Water" />}
                 </div>
             </div>
             <img className="card__image" src={imageSrc} alt={altText} />
