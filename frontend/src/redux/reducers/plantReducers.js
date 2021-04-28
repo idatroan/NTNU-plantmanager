@@ -4,19 +4,16 @@ export const getPlantsReducer = (state = { plants: [] }, action) => {
     switch(action.type) {
         case actionTypes.GET_PLANT_REQUEST:
             return {
-                ...state,
                 loading: true,
                 plants: []
             }
         case actionTypes.GET_PLANT_SUCCESS:
             return {
-                ...state,
                 loading: false,
                 plants: action.payload
             }
         case actionTypes.GET_PLANT_FAIL:
             return {
-                ...state,
                 loading: false,
                 error: action.payload
             }
