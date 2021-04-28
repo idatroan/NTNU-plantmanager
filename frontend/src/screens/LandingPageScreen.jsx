@@ -79,13 +79,19 @@ const LandingPageScreen = () => {
 
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('')
 
     useEffect(async () => {
         // dispatch(listUsers());
         setLoading(true)
-       const { data } = await axios.get('/plants');
-       setPlants(data)
-       setLoading(false)
+        const { data } = await axios.get('/plants')
+        try {
+            setPlants(data)
+            setLoading(false)
+        } catch (error) {
+            setError(error)
+            setLoading(false)
+        }
     }, []);
 
     console.log(plants)
@@ -156,6 +162,7 @@ const LandingPageScreen = () => {
 
     return (
         <div>
+            {error &&  'something went wrong'}
             <div className="cards">
                 <form className="plant-sort">
                     <label htmlFor="plant-sort">Sort by</label>

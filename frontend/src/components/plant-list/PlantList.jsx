@@ -9,18 +9,20 @@ import MessageBox from '../message-box/MessageBox';
 class PlantList extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: false,
+        };
     }
 
     componentDidMount = async () => {
         this.setState({loading: true})
-        const { data } = await axios.get('/plants');
+        const { data } = await axios.get('/plants')
         try {
             this.setState({plants: data})
             this.setState({loading: false})
         } catch (error) {
-            this.setState({error: error.message})
             this.setState({loading: false})
+            this.setState({error: error})
         }
         const plantArray = this.state.plants;
         const plants = plantArray.map(plant => (
@@ -35,7 +37,6 @@ class PlantList extends Component {
     }
 
     render = () => {
-        console.log(this.state.plantList)
         return (
             <div>
                 {this.state.error && <MessageBox variant="danger">{this.state.error}</MessageBox>}
