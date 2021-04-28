@@ -94,3 +94,18 @@ export const plantDeleteReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const plantWaterReducer = (state = {}, action) => {
+    switch(action.type) {
+        case actionTypes.PLANT_WATER_REQUEST:
+            return { loading: true }
+        case actionTypes.PLANT_WATER_SUCCESS:
+            return { loading: false, userInfo: action.payload, success: true }
+        case actionTypes.PLANT_WATER_FAIL:
+            return { loading: false, error: action.payload }
+        case actionTypes.PLANT_WATER_RESET:
+            return {};
+        default:
+            return state
+    }
+}

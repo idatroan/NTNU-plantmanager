@@ -96,8 +96,20 @@ const LandingPageScreen = () => {
 
     console.log(plants)
 
+    function daysLeft (lastWatered, waterfrequency) {
+
+        const ONE_DAY = 86400000;
+        const currentDate = Date.now();
+        const dbDate = new Date(lastWatered).getTime();
+
+        const nextWaterDate = (dbDate + (ONE_DAY * waterfrequency)) - currentDate;
+        const daysLeftUntilWater = Math.round(nextWaterDate / ONE_DAY);
+
+        return daysLeftUntilWater;
+    }
+
     const plantCards = plants.map(plant => {
-        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={plant.waterFrequency} fertilizing={plant.fertilizingFrequency} _id={plant._id}/>
+        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id}/>
     })
 
     // const plantCards = plants.map(plant => {

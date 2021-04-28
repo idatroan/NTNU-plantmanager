@@ -133,3 +133,28 @@ export const plantDelete = (id) => async (dispatch) => {
         });
     }
 };
+
+export const waterPlant = (lastWateredBy, id) => async (dispatch) => {
+    dispatch({
+        type: actionTypes.PLANT_WATER_REQUEST
+    })
+    try {
+        const { data } = await axios.put(`/plant/water/${id}`, {
+            lastWateredBy,
+            id
+        }, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        dispatch({
+            type: actionTypes.PLANT_WATER_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.PLANT_WATER_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        });
+    }
+};

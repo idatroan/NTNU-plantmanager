@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
-import { getPlantDetails } from '../redux/actions/plantActions';
+import { getPlantDetails, waterPlant } from '../redux/actions/plantActions';
 
 // Components
 import Button from '../components/button/Button';
@@ -26,46 +26,74 @@ const PlantScreen = (props) => {
     const [lastWateredAt, setLastWateredAt] = useState('');
     const [lastFertilizedAt, setLastFertilizedAt] = useState('');
     const [lastFertilizedBy, setLastFertilizedBy] = useState('');
+    const [managerOrGardener, setManagerOrGardener] = useState(false);
 
     // Check if user is logged in and if they're a gardener or manager
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    const managerOrGardener = userInfo.user.role === 'manager' || 'gardener';
-
     const dispatch = useDispatch();
 
     const plantDetails = useSelector(state => state.getPlantDetails);
     const { plant, loading, error } = plantDetails;
-    console.log(plantDetails);
-
-    //alt={this.state.altText}
 
     useEffect(() => {
         if (plant && props.match.params.id !== plant._id) {
             dispatch(getPlantDetails(props.match.params.id))
         }
 
+        // If the user is logged in, check if they're manager or gardener
+        if (userInfo) {
+            if (userInfo.user.role === 'manager' || userInfo.user.role === 'gardener') {
+                setManagerOrGardener(true)
+            }
+        }
+
         if (plant) {
+
+            // Functionality to check how many days since watering
+            // Will move this into a helper function
+            function daysSince(lastWatered) {
+                const ONE_DAY = 86400000;
+                const currentDate = Date.now();
+                const dbDate = new Date(lastWatered).getTime();
+
+                const difference = Math.round((currentDate - dbDate) / ONE_DAY);
+                return difference;
+            }
+
+            // Functionality to check how many days left until watering
+            // Will move this into a helper function
+            //const nextWaterDate = (dbDate + (ONE_DAY * plant.waterFrequency)) - currentDate;
+            //const daysLeftUntilWater = Math.round(nextWaterDate / ONE_DAY);
+
             setName(plant.name);
             setType(plant.type);
             setLocation(plant.location);
             setWaterFrequency(plant.waterFrequency);
             setFertilizingFrequency(plant.fertilizingFrequency);
             setLight(plant.light);
-            setLastWateredBy(plant.lastWateredByUserId);
-            setLastWateredAt(plant.lastWateredAtTime);
-            setLastFertilizedAt(plant.lastFertilizedAtTime);
-            setLastFertilizedBy(plant.lastFertilizedByUserId);
+            setLastWateredBy(plant.lastWateredByUser);
+            setLastWateredAt(daysSince(plant.lastWateredAtTime));
+            setLastFertilizedAt(daysSince(plant.lastFertilizedAtTime));
+            setLastFertilizedBy(plant.lastFertilizedByUser);
+
+            console.log(lastWateredBy);
         }
 
     }, [dispatch, props.match.params.id, plant, managerOrGardener]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(managerOrGardener) {
+            await dispatch(waterPlant(lastWateredBy, plant._id))
+            await dispatch(getPlantDetails(plant._id))
+        }
+    }
 
     return (
         <div className="component-container">
-            {/*<Plant { ...props} /> */}
-
             <img className="card__image" src={process.env.PUBLIC_URL + '/assets/img/default-plant.jpg'} alt="" />
                 {loading && <Loading />}
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
@@ -90,12 +118,12 @@ const PlantScreen = (props) => {
 
                     <div>
                         <h2>Last Watered</h2>
-                        <p>{ !lastWateredBy ? 'Never' : 'By ' + lastWateredBy + ' at ' + lastWateredAt }</p>
+                        <p>{ !lastWateredBy ? 'Never' : `${lastWateredAt} days ago by ${lastWateredBy}` }</p>
                         <h2>Last Fertilized</h2>
-                        <p>{ !lastFertilizedBy ? 'Never' : 'By ' + lastFertilizedBy + ' at ' + lastFertilizedAt }</p>
+                        <p>{ !lastFertilizedBy ? 'Never' : `${lastFertilizedAt} days ago by ${lastFertilizedBy}` }</p>
                     </div>
                 </div>
-                {managerOrGardener ? <Button type="submit" value="Water" variant="btn--primary--solid" size="btn-medium"/>
+                {managerOrGardener ? <Button type="submit" value="Water" variant="btn--primary--solid" size="btn-medium" onClick={handleSubmit}/>
                 : <Button type="submit" value="Request Water" variant="btn--primary--solid" size="btn-medium"/>
                 }
 

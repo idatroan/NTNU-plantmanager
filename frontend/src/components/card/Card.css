@@ -61,6 +61,10 @@
     margin-top: 1em;
 }
 
+.overdue + .overdue {
+    margin-top: 1em;
+}
+
 .card__actions {
     margin-top: auto;
     padding-top: 2em;

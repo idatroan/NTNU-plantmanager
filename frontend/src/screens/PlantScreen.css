@@ -1,7 +1,6 @@
 .plant-container {
     display: flex;
     flex-direction: row;
-    gap: 5em;
     justify-content: space-between;
     padding: 0 5em 0 5em;
 }
