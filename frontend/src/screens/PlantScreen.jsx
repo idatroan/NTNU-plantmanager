@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
 import { getPlantDetails, waterPlant } from '../redux/actions/plantActions';
+import { daysSince } from '../helpers/countDays';
 
 // Components
 import Button from '../components/button/Button';
@@ -50,23 +51,6 @@ const PlantScreen = (props) => {
         }
 
         if (plant) {
-
-            // Functionality to check how many days since watering
-            // Will move this into a helper function
-            function daysSince(lastWatered) {
-                const ONE_DAY = 86400000;
-                const currentDate = Date.now();
-                const dbDate = new Date(lastWatered).getTime();
-
-                const difference = Math.round((currentDate - dbDate) / ONE_DAY);
-                return difference;
-            }
-
-            // Functionality to check how many days left until watering
-            // Will move this into a helper function
-            //const nextWaterDate = (dbDate + (ONE_DAY * plant.waterFrequency)) - currentDate;
-            //const daysLeftUntilWater = Math.round(nextWaterDate / ONE_DAY);
-
             setName(plant.name);
             setType(plant.type);
             setLocation(plant.location);
@@ -77,8 +61,6 @@ const PlantScreen = (props) => {
             setLastWateredAt(daysSince(plant.lastWateredAtTime));
             setLastFertilizedAt(daysSince(plant.lastFertilizedAtTime));
             setLastFertilizedBy(plant.lastFertilizedByUser);
-
-            console.log(lastWateredBy);
         }
 
     }, [dispatch, props.match.params.id, plant, managerOrGardener]);

@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+// Actions
 import { getPlants as listPlants } from '../redux/actions/plantActions';
+
+// Components
 import Card from "../components/card/Card"
 import PlantCard from "../components/plant-card/PlantCard";
-import axios from "axios";
 import Loading from '../components/loading/Loading';
+
+// Helpers
+import { daysLeft } from '../helpers/countDays';
 
 // const plants = [
 //     {
@@ -96,18 +103,6 @@ const LandingPageScreen = () => {
 
     console.log(plants)
 
-    function daysLeft (lastWatered, waterfrequency) {
-
-        const ONE_DAY = 86400000;
-        const currentDate = Date.now();
-        const dbDate = new Date(lastWatered).getTime();
-
-        const nextWaterDate = (dbDate + (ONE_DAY * waterfrequency)) - currentDate;
-        const daysLeftUntilWater = Math.round(nextWaterDate / ONE_DAY);
-
-        return daysLeftUntilWater;
-    }
-
     const plantCards = plants.map(plant => {
         return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id}/>
     })
@@ -184,10 +179,6 @@ const LandingPageScreen = () => {
                     </select>
                 </form>
                 <div className="card-container">
-                    {/* plants.map(plant => (
-                        <Card header={plant.name} subheader={plant.type} watering="2" fertilizing="2" _id={plant._id} user={userInfo} />
-                    ))*/}
-                    {/* {plantCards} */}
                     {loading && <Loading />}
                     {plantCards}
                 </div>
