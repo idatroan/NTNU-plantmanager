@@ -1,77 +1,52 @@
+import React, { Component } from 'react';
 import './PlantList.css';
 import { Link } from "react-router-dom"
 import Button from "../button/Button";
+import axios from 'axios';
+import Loading from '../loading/Loading';
+import MessageBox from '../message-box/MessageBox';
 
-const plants = [
-    {
-        title: "Grønne leif",
-        subtitle: "Aloe vera",
-        watering: 5,
-        fertilizing: 46,
-    },
-    {
-        title: "Gule guri",
-        subtitle: "Thymus",
-        watering: 8,
-        fertilizing: 12,
-    },
-    {
-        title: "Lilla laila",
-        subtitle: "Celastrus",
-        watering: 12,
-        fertilizing: 1,
-    },
-    {
-        title: "Blåe ola",
-        subtitle: "Lavandula",
-        watering: 1,
-        fertilizing: 59,
-    },
-    {
-        title: "Røde øde",
-        subtitle: "Populus",
-        watering: -3,
-        fertilizing: 134,
-    },
-    {
-        title: "Turkise lise",
-        subtitle: "Crocus",
-        watering: 12,
-        fertilizing: 40,
-    },
-    {
-        title: "Hvite pelle",
-        subtitle: "Adonis",
-        watering: 0,
-        fertilizing: -4,
-    },
-    {
-        title: "Oransje kari",
-        subtitle: "Betula",
-        watering: 3,
-        fertilizing: 0,
+class PlantList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
     }
-]
 
-const PlantList = () => {
-    return (
-        <div>
-            {/* {loadingDelete && <Loading/>}
-            {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
-            {successDelete && <MessageBox variant="success">User deleted!</MessageBox>} */}
-            <div className="component-container">
-                <h2>Plant's</h2>
-                {plants.map(plant => (
-                    <div className="plant">
-                        <div>{plant.title}</div>
-                        <div>{plant.subtitle}</div>
-                        <Link to="#">Edit</Link>
-                        <Button value="Delete" variant="btn--danger--solid" size="btn--small"/>
-                    </div>
-                ))}
+    componentDidMount = async () => {
+        this.setState({loading: true})
+        const { data } = await axios.get('/plants');
+        try {
+            this.setState({plants: data})
+            this.setState({loading: false})
+        } catch (error) {
+            this.setState({error: error.message})
+            this.setState({loading: false})
+        }
+        const plantArray = this.state.plants;
+        const plants = plantArray.map(plant => (
+            <div className="plant">
+                <div>{plant.name}</div>
+                <div>{plant.type}</div>
+                <Link to="#">Edit</Link>
+                <Button value="Delete" variant="btn--danger--solid" size="btn--small"/>
             </div>
-        </div>
-    )
+        ))
+        this.setState({plantList: plants})
+    }
+
+    render = () => {
+        console.log(this.state.plantList)
+        return (
+            <div>
+                {this.state.error && <MessageBox variant="danger">{this.state.error}</MessageBox>}
+                <div className="component-container">
+                    <h2>Plant's</h2>
+                    {this.state.loading && <Loading/>}
+                    {this.state.plantList}
+                </div>
+            </div>
+        )
+    }
 }
 
 export default PlantList;

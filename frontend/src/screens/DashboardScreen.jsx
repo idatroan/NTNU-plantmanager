@@ -21,7 +21,7 @@ const DashboardScreen = (props) => {
     return (
         <div>
             <h1 className="no-margin">Dashboard</h1>
-            <Link className="subheader-link" to="#">Create a new plant</Link>
+            <Link className="subheader-link" to="/plants/create">Create a new plant</Link>
             <div className="dashboard-content-container">
                 <PlantList />
                 <UserList />

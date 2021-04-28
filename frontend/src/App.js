@@ -16,6 +16,7 @@ import Container from "./components/container/Container";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import PlantScreen from "./screens/PlantScreen";
+import CreatePlantScreen from "./screens/CreatePlantScreen";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/profile/:id" component={ProfileScreen} />
                     <Route path="/forgot" component={ForgotPasswordScreen} />
                     <Route path="/reset/:id" component={ResetPasswordScreen} />
+                    <Route path="/plants/create" component={CreatePlantScreen} />
                     <Route path="/plants/:id" component={PlantScreen} />
                 </Switch>
             </Container>

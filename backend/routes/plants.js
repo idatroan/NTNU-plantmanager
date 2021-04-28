@@ -9,7 +9,8 @@ const {
     deletePlantById
 } = require('../controllers/plantController');
 
-router.post('/', checkIfManager, createPlant);
+// router.post('/', checkIfManager, createPlant);
+router.post('/', createPlant);
 
 router.get('/', getAllPlants);
 
