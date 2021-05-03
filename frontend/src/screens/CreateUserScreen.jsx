@@ -11,9 +11,13 @@ const UserRegisterScreen = (props) => {
 
     return (
         <div>
-            <h1>Create an account</h1>
+            
             {/* <UserRegister parentProps={props} /> */}
-            <RegisterForm />
+
+            <div className="component-container">
+                <h1>Create an account</h1>
+                <RegisterForm />
+            </div>
         </div>
     )
 }

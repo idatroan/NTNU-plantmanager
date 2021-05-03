@@ -41,11 +41,12 @@ const LoginScreen = (props) => {
 
     return (
         <div>
-            <h1>Login</h1>
+            
             <div className="component-container">
             <div className="form">
-                <a href="#">Forgot password</a>
-                <span>Don't have an account? <a href="#">Register here</a></span>
+                <h1>Login</h1>
+                <Link to="/forgot">Forgot password</Link>
+                <span>Don't have an account? <Link to="/register">Register here</Link></span>
                 <Formik 
                     initialValues={{
                         email: '',
