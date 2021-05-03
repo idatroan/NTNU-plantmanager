@@ -1,28 +1,16 @@
 import './Button.css';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const VARIANTS = [
-    "btn--primary--solid",
-    "btn--danger--solid",
-    "btn--success--solid",
-    "btn--close--solid",
-]
+const Button = ({ type, value, loading=false, variant="primary" }) => {
 
-const SIZES = [
-    "btn--small",
-    "btn--medium",
-    "btn--large",
-]
-
-const Button = ({value, type, variant, size, onClick}) => {
-
-    const checkButtonVariant = VARIANTS.includes(variant) ? variant : VARIANTS[0];
-    const checkButtonSize = SIZES.includes(size) ? size : SIZES[1];
-
-    return (
-        <button className={`btn ${checkButtonVariant} ${checkButtonSize}`} onClick={onClick} type={type}>
-            {value}
+    return ( 
+        <button 
+            className={`button ${variant}`} 
+            type={type}>{value} 
+            {loading && <LoadingSpinner size="small" color="light"/>}
         </button>
-    )
+    );
+    
 }
-
+ 
 export default Button;

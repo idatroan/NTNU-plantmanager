@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Card.css';
-import Button from '../button/Button';
+import Button from '../Button/Button';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 

@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import MessageBox from "../components/message-box/MessageBox";
 import TextInput from "../components/text-input/TextInput";
-import Button from "../components/button/Button";
+import Button from "../components/Button/Button";
+import LoginForm from "../components/LoginForm/LoginForm";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import '../components/LoginForm/LoginForm.css';
+import TextField from "../components/TextField/TextField";
+import PasswordField from "../components/TextField/PasswordField";
 
 const LoginScreen = (props) => {
 
@@ -18,14 +24,14 @@ const LoginScreen = (props) => {
     const userLogin = useSelector(state => state.userLogin);
     const { loading, error, userInfo } = userLogin;
 
-    console.log(userInfo)
+    // console.log(userInfo)
 
     const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(login(email, password))
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     dispatch(login(email, password))
+    // }
 
     useEffect(() => {
         if (userInfo) {
@@ -37,32 +43,36 @@ const LoginScreen = (props) => {
         <div>
             <h1>Login</h1>
             <div className="component-container">
-                {loading && <Loading/>}
-                {error && <MessageBox variant="danger">{error}</MessageBox>}
-                <form onSubmit={handleSubmit}>
-                    <TextInput 
-                        label="Email address" 
-                        type="email"
-                        name="email" 
-                        id="email" 
-                        value={email} 
-                        required={true} 
-                        onChange={(e) => setEmail(e.target.value)} />
-
-                    <TextInput 
-                        label="Password" 
-                        type="password"
-                        name="password" 
-                        id="password" 
-                        value={password} 
-                        required={true} 
-                        onChange={(e) => setPassword(e.target.value)} />
-                    
-                    <Button type="submit" value="Log in" variant="btn--primary--solid" size="btn--medium"/>
-                </form>
-                <Link className="margin-top" to="/forgot">Forgot Password?</Link>
-                <br/>
-                <Link className="margin-top" to="/register">Don't have an account? Register here</Link>
+            <div className="form">
+                <a href="#">Forgot password</a>
+                <span>Don't have an account? <a href="#">Register here</a></span>
+                <Formik 
+                    initialValues={{
+                        email: '',
+                        password: '',
+                    }}
+                    validationSchema={Yup.object({
+                        email: Yup.string()
+                            .email('Invalid email address!')
+                            .required('Email is required!'),
+                        password: Yup.string()
+                            .required('Password is required!'),
+                    })}
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        const email = values.email;
+                        const password = values.password;
+                        dispatch(login(email, password))
+                    }}
+                >
+                    {props => (
+                        <Form>
+                            <TextField label="Email" name="email" type="email" id="email" />
+                            <PasswordField label="Password" name="password" id="password"/>
+                            <Button type="submit" value="Login" variant="primary" loading={props.isSubmitting} />
+                        </Form>
+                    )}
+                </Formik>
+            </div>
             </div>
         </div>
     )

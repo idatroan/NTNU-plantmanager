@@ -9,7 +9,7 @@ import { USER_UPDATE_RESET } from '../redux/constants/userConstants';
 import MessageBox from '../components/message-box/MessageBox';
 import Loading from '../components/loading/Loading';
 import TextInput from '../components/text-input/TextInput';
-import Button from '../components/button/Button';
+import Button from '../components/Button/Button';
 
 const UserEditScreen = (props) => {
 

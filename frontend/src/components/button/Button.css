@@ -1,62 +1,28 @@
-:root {
-    --primary: #244c60;
-    --danger: #eb3f27;
-    --success: #23702a;
-    --white: #fdfdfd;
-    --dark: #181717;
+@import '../../variables.css';
+
+.input + .button {
+    margin-top: 1em;
 }
 
-.btn {
-    display: inline-block;
+.button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: .8em 1.6em;
+    font-size: inherit;
     font-family: inherit;
-    font-weight: 400;
+    font-weight: 700;
+    border: none;
+    border-radius: 2px;
     cursor: pointer;
-    border-radius: 50px;
-    border: none; 
 }
 
-.btn:hover {
-    opacity: .7;
+.primary {
+    background-color: #3282CE;
+    color: var(--clr-white);
 }
 
-.btn--primary--solid {
-   background-color: var(--primary);
-   color: var(--white);
-}
-
-.btn--success--solid {
-    background-color: var(--success);
-    color: var(--white);
- }
-
-.btn--danger--solid {
-    background-color: var(--danger);
-    color: var(--white);
-}
-
-/* Button Size */
-
-.btn--small {
-    padding: .3em .7em;
-    font-size: 14px;
-}
-
-.btn--medium {
-    padding: .6em 1.5em;
-    font-size: 16px;
-}
-
-.btn--large {
-    padding: 1em 2em;
-    font-size: 18px;
-}
-
-.btn--close--solid {
-    background-color: transparent;
-    color: rgb(0, 78, 0);
-    border-radius: 5px;
-    padding: .1em .4em;
-    text-transform: uppercase;
-    font-size: 14px;
-    border: 1px solid rgb(0, 108, 0);
+.danger {
+    background-color: var(--clr-danger);
+    color: var(--clr-white);
 }

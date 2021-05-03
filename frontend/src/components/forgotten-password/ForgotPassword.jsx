@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TextInput from "../text-input/TextInput";
-import Button from "../button/Button";
+import Button from "../Button/Button";
 
 class ForgotPassword extends Component {
     constructor(props) {

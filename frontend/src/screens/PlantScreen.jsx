@@ -7,7 +7,7 @@ import { getPlantDetails, waterPlant } from '../redux/actions/plantActions';
 import { daysSince } from '../helpers/countDays';
 
 // Components
-import Button from '../components/button/Button';
+import Button from '../components/Button/Button';
 import Loading from '../components/loading/Loading';
 import MessageBox from '../components/message-box/MessageBox';
 
