@@ -30,7 +30,7 @@ class PlantList extends Component {
                 <div>{plant.name}</div>
                 <div>{plant.type}</div>
                 <Link to="#">Edit</Link>
-                <Button value="Delete" variant="btn--danger--solid" size="btn--small"/>
+                <Button value="Delete" variant="danger" size="small"/>
             </div>
         ))
         this.setState({plantList: plants})

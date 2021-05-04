@@ -101,12 +101,6 @@ const LandingPageScreen = () => {
         }
     }, []);
 
-    console.log(plants)
-
-    const plantCards = plants.map(plant => {
-        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id}/>
-    })
-
     // const plantCards = plants.map(plant => {
     //     return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing} _id={plant._id} user={userInfo}/>
     // })
@@ -149,23 +143,28 @@ const LandingPageScreen = () => {
     //     }
     // }
 
-    // Sort by role, first name or last name
-    // if (plants) {
-    //     plants.sort((a, b) => {
-    //         if (sort === 'watering') {
-    //             if (a.watering < b.watering) return -1;
-    //             if (a.watering > b.watering) return 1;
-    //         } else if (sort === 'fertilizing') {
-    //             if (a.fertilizing < b.fertilizing) return -1;
-    //             if (a.fertilizing > b.fertilizing) return 1;
-    //         }
-    //         return 0;
-    //     })
-    //     }
+    // Sort by watering or fertilizing
+    if (plants) {
+        plants.sort((a, b) => {
+            let aDaysLeftWater = daysLeft(a.lastWateredAtTime, a.waterFrequency)
+            let bDaysLeftWater = daysLeft(b.lastWateredAtTime, b.waterFrequency)
+            let aDaysLeftFertilizer = daysLeft(a.lastFertilizedAtTime, a.fertilizingFrequency)
+            let bDaysLeftFertilizer = daysLeft(b.lastFertilizedAtTime, b.fertilizingFrequency)
+            if (sort === 'watering') {
+                if (aDaysLeftWater < bDaysLeftWater) return -1;
+                if (aDaysLeftWater > bDaysLeftWater) return 1;
+            } else if (sort === 'fertilizing') {
+                if (aDaysLeftFertilizer < bDaysLeftFertilizer) return -1;
+                if (aDaysLeftFertilizer > bDaysLeftFertilizer) return 1;
+            }
+            return 0;
+        })
+    }
 
-    // const plantCards = plants.map(plant => {
-    //     return <Card header={plant.title} subheader={plant.subtitle} watering={plant.watering} fertilizing={plant.fertilizing} _id={plant._id} user={userInfo}/>
-    // })
+    const plantCards = plants.map(plant => {
+        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id}/>
+    })
+
 
     return (
         <div>

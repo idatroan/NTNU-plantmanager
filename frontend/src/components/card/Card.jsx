@@ -38,11 +38,11 @@ const Card = ({
                 <div className="card__subheader">{subheader}</div>
 
                 {wateringToday && <div className={`${warning && 'warning'}`}>Plant need watering today!</div>}
-                {wateringOverdue && <div className={`${danger && 'overdue'}`}>{`Watering is overdue by ${watering} days!`}</div>}
+                {wateringOverdue && <div className={`${danger && 'overdue'}`}>{`Watering overdue by ${watering} days!`}</div>}
                 {watering > 0 && <div>{`Next watering in ${watering} days`}</div>}
 
                 {fertilizingToday && <div className={`${warning && 'warning'}`}>Plant need fertilizing today!</div>}
-                {fertilizingOverdue && <div className={`${danger && 'overdue'}`}>{`Fertilizing is overdue by ${fertilizing} days!`}</div>}
+                {fertilizingOverdue && <div className={`${danger && 'overdue'}`}>{`Fertilizing overdue by ${fertilizing} days!`}</div>}
                 {fertilizing > 0 && <div>{`Next fertilizing in ${fertilizing} days`}</div>}
 
                 <div className="card__actions">

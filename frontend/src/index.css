@@ -5,6 +5,11 @@
     margin: 0;
 }
 
+:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px purple;
+}
+
 body {
   margin: 0;
   line-height: 1.6;
@@ -81,40 +86,6 @@ select {
         padding: 3em;
     }
 }
-
-/* .btn {
-    display: inline-block;
-    font-size: inherit;
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 50px;
-    background-color: transparent;
-    padding: .3em 1.2em;
-    color: inherit;
-    text-decoration: none;
-}
-
-.btn ~ .btn {
-    margin-left: .5em;
-}
-
-.btn:hover,
-.btn:focus {
-    background-color: black;
-    color: white;
-}
-
-.btn__danger {
-    border: 1px solid red;
-    color: red;
-}
-
-.btn__danger:hover,
-.btn__danger:focus {
-    border: 1px solid red;
-    background-color: red;
-    color: rgb(255, 255, 255);
-} */
 
 .no-margin {
     margin: 0;

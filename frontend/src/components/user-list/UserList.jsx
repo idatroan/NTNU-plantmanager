@@ -76,7 +76,7 @@ const UserList = () => {
                         <div>{user.email}</div>
                         <div>{user.role}</div>
                         <Link to={`/users/edit/${user._id}`}>Edit</Link>
-                        <Button onClick={() => deleteHandler(user._id)} value="Delete" variant="btn--danger--solid" size="btn--small"/>
+                        <Button onClick={() => deleteHandler(user._id)} value="Delete" variant="danger" size="small"/>
                     </div>
                 ))}
             </div>

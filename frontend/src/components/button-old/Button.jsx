@@ -1,16 +1,16 @@
 import './Button.css';
 
 const VARIANTS = [
-    "btn--primary--solid",
-    "btn--danger--solid",
-    "btn--success--solid",
+    "button__primary",
+    "button__danger",
+    "button__success",
     "btn--close--solid",
 ]
 
 const SIZES = [
-    "btn--small",
-    "btn--medium",
-    "btn--large",
+    "button__small",
+    "button__medium",
+    "button__large",
 ]
 
 const Button = ({value, type, variant, size, onClick}) => {

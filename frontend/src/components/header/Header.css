@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 header * {
     margin: 0;
     padding: 0;
@@ -72,8 +74,8 @@ header {
 
 .login-btn {
     padding: .3em 1em;
-    border: 1px solid green;
-    border-radius: 100px;
+    border: 1px solid var(--clr-button-primary);
+    border-radius: 2px;
 }
 
 .login-btn::after {
@@ -82,7 +84,7 @@ header {
 
 .login-btn:hover {
     color: white;
-    background-color: green;
+    background-color: var(--clr-button-primary);
 }
 
 @media screen and (min-width: 470px) {

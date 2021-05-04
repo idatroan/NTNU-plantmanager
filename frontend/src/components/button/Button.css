@@ -17,12 +17,23 @@
     cursor: pointer;
 }
 
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+    opacity: .8;
+}
+
 .primary {
-    background-color: #3282CE;
+    background-color: var(--clr-button-primary);
     color: var(--clr-white);
 }
 
 .danger {
     background-color: var(--clr-danger);
     color: var(--clr-white);
+}
+
+.small {
+    padding: .2em .4em;
+    font-weight: 400;
 }
