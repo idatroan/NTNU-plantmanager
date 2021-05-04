@@ -39,7 +39,7 @@ class PlantList extends Component {
             <div>
                 {this.state.error && <MessageBox variant="danger">{this.state.error}</MessageBox>}
                 <div className="component-container">
-                    <h2>Plant's</h2>
+                    <h2>Plants</h2>
                     {this.state.loading && <Loading/>}
                     {this.state.plantList}
                 </div>

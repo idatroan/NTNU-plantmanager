@@ -42,7 +42,6 @@ class ResetPassword extends Component {
             axios
                 .patch(`/reset/${body.token}`, body)
                 .then(() => {
-                    //this.props.history.push('/login');
                     this.setState({
                         passwordChanged: true
                     })
@@ -75,7 +74,7 @@ class ResetPassword extends Component {
                             onChange={e => this.setState({ confirmPassword: e.target.value })}
                             required />
 
-                        <Button type="submit" value="Send" variant="btn--primary--solid" size="btn--medium"/>
+                        <Button type="submit" value="Send" variant="primary" onSubmit={this.handleSubmit}/>
                     </form>
                     :
                     <div>

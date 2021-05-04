@@ -4,8 +4,8 @@ const ResetPasswordScreen = (props) => {
 
     return (
         <div>
-            <h1>Password Reset</h1>
             <div className="component-container">
+                <h1>Reset Password</h1>
                 <ResetPassword { ...props } />
             </div>
         </div>
