@@ -109,3 +109,18 @@ export const plantWaterReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const plantFertilizeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case actionTypes.PLANT_FERTILIZE_REQUEST:
+            return { loading: true }
+        case actionTypes.PLANT_FERTILIZE_SUCCESS:
+            return { loading: false, userInfo: action.payload, success: true }
+        case actionTypes.PLANT_FERTILIZE_FAIL:
+            return { loading: false, error: action.payload }
+        case actionTypes.PLANT_FERTILIZE_RESET:
+            return {};
+        default:
+            return state
+    }
+}

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
-import { getPlantDetails, waterPlant } from '../redux/actions/plantActions';
+import { getPlantDetails, waterPlant, fertilizePlant } from '../redux/actions/plantActions';
 import { daysSince } from '../helpers/countDays';
 
 // Components
@@ -65,11 +65,20 @@ const PlantScreen = (props) => {
 
     }, [dispatch, props.match.params.id, plant, managerOrGardener]);
 
-    const handleSubmit = async (e) => {
+    const handleWater = async (e) => {
         e.preventDefault();
 
         if(managerOrGardener) {
-            await dispatch(waterPlant(userInfo, plant._id)) // needs rework
+            await dispatch(waterPlant(plant._id))
+            await dispatch(getPlantDetails(plant._id))
+        }
+    }
+
+    const handleFertilize = async (e) => {
+        e.preventDefault();
+
+        if(managerOrGardener) {
+            await dispatch(fertilizePlant(plant._id))
             await dispatch(getPlantDetails(plant._id))
         }
     }
@@ -105,9 +114,15 @@ const PlantScreen = (props) => {
                         <p>{ !lastFertilizedBy ? 'Never' : `${lastFertilizedAt} days ago by ${lastFertilizedBy}` }</p>
                     </div>
                 </div>
-                {managerOrGardener ? <Button type="submit" value="Water" variant="btn--primary--solid" size="btn-medium" onClick={handleSubmit}/>
-                : <Button type="submit" value="Request Water" variant="btn--primary--solid" size="btn-medium"/>
-                }
+                {managerOrGardener && (
+                    <div className="plantButtons">
+                        <Button type="submit" value="Water" size="btn--small" onClick={handleWater}/>
+                        <Button type="submit" value="Fertilize" size="btn--small" onClick={handleFertilize}/>
+                    </div>
+                )}
+                {!managerOrGardener && (
+                    <Button type="submit" value="Request Water" size="btn--small"/>
+                )}
 
         </div>
     )

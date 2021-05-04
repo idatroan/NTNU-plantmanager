@@ -76,6 +76,22 @@ const waterPlantById = async (req, res) => {
     }
 }
 
+const fertilizePlantById = async (req, res) => {
+    try {
+        const plant = await Plant.findById(req.params.id);
+        const managerOrGardener = req.user.role === 'manager' || req.user.role === 'gardener';
+
+        plant.lastFertilizedByUser = req.user.firstName + ' ' + req.user.lastName;
+        plant.lastFertilizedAtTime = Date.now();
+
+        await plant.save();
+
+        res.status(200).json(`${plant.name} have been fertilized`);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
+
 const deletePlantById = async (req, res) => {
     const plant = await Plant.findById(req.params.id);
 
@@ -93,5 +109,6 @@ module.exports = {
     getAllPlants,
     updatePlantById,
     deletePlantById,
-    waterPlantById
+    waterPlantById,
+    fertilizePlantById
 }

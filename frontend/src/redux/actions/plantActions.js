@@ -1,13 +1,13 @@
 import * as actionTypes from '../constants/plantConstants';
 import axios from 'axios';
 
-const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+//const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 let token = undefined;
 
-if (userInfo) {
+/*if (userInfo) {
     token = userInfo.token;
-}
+}*/
 
 export const getPlants = () => async (dispatch) => {
     try {
@@ -52,11 +52,14 @@ export const getPlantDetails = (id) => async (dispatch) => {
 };
 
 export const createPlant = (name, location, waterFrequency, fertilizingFrequency, light) => async (dispatch) => {
+
     dispatch({
         type: actionTypes.PLANT_CREATE_REQUEST,
         payload: { name, location, waterFrequency, fertilizingFrequency, light },
     })
     try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
         const { data } = await axios.post('/register', {
             name, 
             location, 
@@ -64,7 +67,7 @@ export const createPlant = (name, location, waterFrequency, fertilizingFrequency
             fertilizingFrequency,
             light
         }, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         dispatch({
             type: actionTypes.PLANT_CREATE_SUCCESS,
@@ -82,10 +85,13 @@ export const createPlant = (name, location, waterFrequency, fertilizingFrequency
 };
 
 export const updatePlant = (name, location, waterFrequency, fertilizingFrequency, light, id) => async (dispatch) => {
+
     dispatch({
         type: actionTypes.PLANT_UPDATE_REQUEST
     })
     try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
         const { data } = await axios.put(`/plants/${id}`, {
             name, 
             location, 
@@ -93,7 +99,7 @@ export const updatePlant = (name, location, waterFrequency, fertilizingFrequency
             fertilizingFrequency,
             light
         }, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         dispatch({
             type: actionTypes.PLANT_UPDATE_SUCCESS,
@@ -116,8 +122,10 @@ export const plantDelete = (id) => async (dispatch) => {
         payload: id
     })
     try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
         const { data } = await axios.delete(`/plants/${id}`, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         dispatch({
             type: actionTypes.PLANT_DELETE_SUCCESS,
@@ -134,16 +142,17 @@ export const plantDelete = (id) => async (dispatch) => {
     }
 };
 
-export const waterPlant = (lastWateredBy, id) => async (dispatch) => {
+export const waterPlant = (id) => async (dispatch) => {
     dispatch({
         type: actionTypes.PLANT_WATER_REQUEST
     })
     try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
         const { data } = await axios.put(`/plant/water/${id}`, {
-            lastWateredBy,
             id
         }, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         dispatch({
             type: actionTypes.PLANT_WATER_SUCCESS,
@@ -152,6 +161,32 @@ export const waterPlant = (lastWateredBy, id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: actionTypes.PLANT_WATER_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        });
+    }
+};
+
+export const fertilizePlant = (id) => async (dispatch) => {
+    dispatch({
+        type: actionTypes.PLANT_FERTILIZE_REQUEST
+    })
+    try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        const { data } = await axios.put(`/plant/fertilize/${id}`, {
+            id
+        }, {
+            headers: { Authorization: `Bearer ${userInfo.token}` }
+        });
+        dispatch({
+            type: actionTypes.PLANT_FERTILIZE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.PLANT_FERTILIZE_FAIL,
             payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message

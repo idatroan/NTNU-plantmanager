@@ -13,7 +13,7 @@ const Footer = () => {
 
                 Coded by Ida Therese Hongset Trøan and Jostein Tollefsrud
             </p>
-            <img src={process.env.PUBLIC_URL + '/assets/img/ntnu-logo3.png'} alt="" />
+            <img src={process.env.PUBLIC_URL + '/assets/img/ntnu-logo.png'} alt="" />
         </footer>
     )
 }

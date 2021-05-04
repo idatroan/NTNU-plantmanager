@@ -19,7 +19,10 @@ const Header = () => {
     return ( 
         <header>
             <nav>
-                <Link className="logo" to="/">Plant Manager</Link>
+                {/*<img src={process.env.PUBLIC_URL + '/assets/img/plantlogo2.png'} alt="" />*/}
+                <Link className="logo" to="/">
+                    Plant Manager
+                </Link>
                 <ul>
                     {manager && <li><Link className="link-text" to="/dashboard">Dashboard</Link></li>}
                     {userInfo && <li><Link className="link-text-name" to={`/profile/${userInfo.user.id}`}>{userInfo.user.firstName} {userInfo.user.lastName}</Link></li>}

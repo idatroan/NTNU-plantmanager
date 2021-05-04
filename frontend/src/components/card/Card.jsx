@@ -30,6 +30,8 @@ const Card = ({
     const wateringOverdue = watering < 0;
     const fertilizingToday = fertilizing === 0;
     const fertilizingOverdue = fertilizing < 0;
+    const neverFertilized = fertilizing > 1000;
+    const neverWatered = watering > 1000;
 
     return (
         <div className={`card`}>
@@ -39,10 +41,12 @@ const Card = ({
 
                 {wateringToday && <div className={`${warning && 'warning'}`}>Plant need watering today!</div>}
                 {wateringOverdue && <div className={`${danger && 'overdue'}`}>{`Watering overdue by ${watering} days!`}</div>}
+                {neverWatered && <div className={`${warning && 'warning'}`}>Plant not watered yet.</div>}
                 {watering > 0 && <div>{`Next watering in ${watering} days`}</div>}
 
                 {fertilizingToday && <div className={`${warning && 'warning'}`}>Plant need fertilizing today!</div>}
                 {fertilizingOverdue && <div className={`${danger && 'overdue'}`}>{`Fertilizing overdue by ${fertilizing} days!`}</div>}
+                {neverFertilized && <div className={`${warning && 'warning'}`}>Plant not fertilized yet.</div>}
                 {fertilizing > 0 && <div>{`Next fertilizing in ${fertilizing} days`}</div>}
 
                 <div className="card__actions">
