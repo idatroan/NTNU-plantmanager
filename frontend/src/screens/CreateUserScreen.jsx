@@ -10,10 +10,7 @@ const UserRegisterScreen = (props) => {
     if (userInfo) props.history.push('/')
 
     return (
-        <div>
-            
-            {/* <UserRegister parentProps={props} /> */}
-
+        <div className="centered-container">
             <div className="component-container">
                 <h1>Create an account</h1>
                 <RegisterForm />

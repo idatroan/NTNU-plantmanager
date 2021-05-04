@@ -3,9 +3,9 @@ import ForgotPassword from '../components/forgotten-password/ForgotPassword';
 const ForgotPasswordScreen = () => {
 
     return (
-        <div>
-            <h1>Request Password Reset</h1>
+        <div className="centered-container">
             <div className="component-container">
+                <h1>Reset password</h1>
                 <ForgotPassword />
             </div>
         </div>

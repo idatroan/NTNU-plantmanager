@@ -40,13 +40,14 @@ const LoginScreen = (props) => {
     }, [userInfo, props.history])
 
     return (
-        <div>
-            
+        <div className="centered-container">
+            {error && <MessageBox className="login__error" variant="danger">{error}</MessageBox>}
             <div className="component-container">
             <div className="form">
                 <h1>Login</h1>
                 <Link to="/forgot">Forgot password</Link>
                 <span>Don't have an account? <Link to="/register">Register here</Link></span>
+
                 <Formik 
                     initialValues={{
                         email: '',
@@ -62,7 +63,10 @@ const LoginScreen = (props) => {
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         const email = values.email;
                         const password = values.password;
-                        dispatch(login(email, password))
+                        setSubmitting(true);
+                        dispatch(login(email, password));
+                        setSubmitting(false);
+                        resetForm();
                     }}
                 >
                     {props => (

@@ -129,3 +129,8 @@ select {
     margin-bottom: 3em;
     display: inline-block;
 }
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+}

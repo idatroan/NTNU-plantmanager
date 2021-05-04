@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TextInput from "../text-input/TextInput";
 import Button from "../Button/Button";
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import TextField from '../TextField/TextField';
+import MessageBox from '../message-box/MessageBox';
 
 class ForgotPassword extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            email: '',
             emailSent: false
         };
 
@@ -31,26 +34,50 @@ class ForgotPassword extends Component {
     };
 
     render() {
-        const { email, emailSent } = this.state;
+        const { emailSent, error } = this.state;
 
         return (
-            <div>
-                {emailSent ? <span>E-mail with reset instructions on it's way!</span>
-                :
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="email">Please enter your email:</label>
-                    <TextInput
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="example@example.com"
-                        value={email}
-                        onChange={e => this.setState({ email: e.target.value })}
-                        required />
-                    <Button type="submit" value="Send" variant="btn--primary--solid" size="btn--medium"/>
-                </form>
-                }
-            </div>
+            <>
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
+                {emailSent ? <MessageBox variant="success">E-mail with reset instructions on it's way!</MessageBox> : (
+                    <div className="form">
+                    <Formik 
+                        initialValues={{
+                            email: '',
+                        }}
+                        validationSchema={Yup.object({
+                            email: Yup.string()
+                                .email('Invalid email address!')
+                                .required('Email is required!'),
+                        })}
+                        onSubmit={ async (values, { setSubmitting, resetForm }) => {
+                            const email = values.email;
+                            try {
+                                setSubmitting(true);
+                                const message = await axios.post('/forgot', { email: email });
+                                console.log(message);
+                                setSubmitting(false);
+                                resetForm();
+                                this.setState({ error: '', emailSent: true });
+                            } catch (err) {
+                                setSubmitting(false);
+                                console.error(err.response.statusText)
+                                this.setState({
+                                    error: err.response.statusText
+                                })
+                            }
+                        }}
+                    >
+                        {props => (
+                            <Form>
+                                <TextField label="Enter your email" name="email" type="email" id="email" />
+                                <Button type="submit" value="Reset" variant="primary" loading={props.isSubmitting} />
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
+                )}
+            </>
         )
     }
 }

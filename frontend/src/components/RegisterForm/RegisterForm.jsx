@@ -8,6 +8,8 @@ import './RegisterForm.css';
 import TextField from '../TextField/TextField';
 import PasswordField from '../TextField/PasswordField';
 import Button from '../Button/Button';
+import MessageBox from '../message-box/MessageBox';
+import { Link } from 'react-router-dom';
 
 class RegisterForm extends Component {
     constructor(props) {
@@ -20,8 +22,14 @@ class RegisterForm extends Component {
     render() { 
         return ( 
             <div className="form">
-                {this.state.error && `${this.state.error}`}
-                <Formik 
+                {this.state.error && <MessageBox variant="danger">{this.state.error}</MessageBox>}
+                {this.state.createdAccount ? (
+                    <>
+                        <MessageBox variant="success">Your account is created</MessageBox>
+                        <br></br>
+                        <Link to="/login">You can now login</Link>
+                    </> ) : (
+                    <Formik 
                     initialValues={{
                         firstName: '',
                         lastName: '',
@@ -62,7 +70,7 @@ class RegisterForm extends Component {
                             console.log(message)
                             setSubmitting(false);
                             resetForm();
-                            this.setState({error: ''})
+                            this.setState({ error: '', createdAccount: true })
                         } catch (error) {
                             console.error(error.response)
                             this.setState({
@@ -83,6 +91,8 @@ class RegisterForm extends Component {
                         </Form>
                     )}
                 </Formik>
+                )}
+                
             </div>
          );
     }
