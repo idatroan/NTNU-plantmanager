@@ -17,6 +17,7 @@ import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import PlantScreen from "./screens/PlantScreen";
 import CreatePlantScreen from "./screens/CreatePlantScreen";
+import Footer from "./components/footer/Footer";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/plants/:id" component={PlantScreen} />
                 </Switch>
             </Container>
+            <Footer />
         </Router>
     );
 }

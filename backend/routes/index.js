@@ -3,7 +3,7 @@ const passport = require('passport');
 
 router.use('/login', require('./login'));
 router.use('/', require('./resetpassword'));
-router.use('/plants', /*passport.authenticate('jwt', { session: false }), */require('./plants'));
+router.use('/plants', require('./plants'));
 router.use('/plant', passport.authenticate('jwt', { session: false }), require('./privatePlant'));
 router.use('/register', require('./register'));
 router.use('/users', passport.authenticate('jwt', { session: false }), require('./users'));

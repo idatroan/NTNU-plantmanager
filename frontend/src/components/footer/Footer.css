@@ -1,0 +1,26 @@
+footer {
+    background-color: #303030;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em;
+    margin-top: 5em;
+}
+
+footer img {
+    /*width: 15%;*/
+    object-fit: contain;
+}
+
+footer p {
+    color: white;
+    margin-right: 2.5em;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 736px) {
+    footer {
+        flex-direction: column;
+    }
+}
