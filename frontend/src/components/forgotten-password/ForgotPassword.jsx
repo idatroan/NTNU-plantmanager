@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TextInput from "../text-input/TextInput";
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import TextField from '../TextField/TextField';

@@ -10,7 +10,7 @@ import './ProfileScreen.css';
 import Loading from '../components/loading/Loading';
 import MessageBox from '../components/message-box/MessageBox';
 import TextInput from '../components/text-input/TextInput';
-import Button from '../components/Button/Button';
+import Button from '../components/button/Button';
 
 const ProfileScreen = (props) => {
 

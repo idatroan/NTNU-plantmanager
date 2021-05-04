@@ -8,7 +8,7 @@ import './UserList.css';
 import { userDelete, getUsers as listUsers } from '../../redux/actions/userActions';
 import Loading from '../loading/Loading';
 import MessageBox from '../message-box/MessageBox';
-import Button from '../Button/Button';
+import Button from '../button/Button';
 import { USER_DELETE_RESET } from '../../redux/constants/userConstants';
 
 const UserList = () => {

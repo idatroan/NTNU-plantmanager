@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import MessageBox from "../components/message-box/MessageBox";
 import TextInput from "../components/text-input/TextInput";
-import Button from "../components/Button/Button";
+import Button from "../components/button/Button";
 import LoginForm from "../components/LoginForm/LoginForm";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';

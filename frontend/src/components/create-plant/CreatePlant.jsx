@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import Button from '../Button/Button';
+import Button from '../button/Button';
 import Loading from '../loading/Loading';
 import MessageBox from '../message-box/MessageBox';
 import TextInput from "../text-input/TextInput"

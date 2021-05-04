@@ -7,7 +7,7 @@ import './RegisterForm.css';
 // import components
 import TextField from '../TextField/TextField';
 import PasswordField from '../TextField/PasswordField';
-import Button from '../Button/Button';
+import Button from '../button/Button';
 import MessageBox from '../message-box/MessageBox';
 import { Link } from 'react-router-dom';
 

@@ -7,7 +7,7 @@ import { getPlantDetails, waterPlant } from '../redux/actions/plantActions';
 import { daysSince } from '../helpers/countDays';
 
 // Components
-import Button from '../components/Button/Button';
+import Button from '../components/button/Button';
 import Loading from '../components/loading/Loading';
 import MessageBox from '../components/message-box/MessageBox';
 
@@ -69,7 +69,7 @@ const PlantScreen = (props) => {
         e.preventDefault();
 
         if(managerOrGardener) {
-            await dispatch(waterPlant(lastWateredBy, plant._id))
+            await dispatch(waterPlant(userInfo, plant._id)) // needs rework
             await dispatch(getPlantDetails(plant._id))
         }
     }

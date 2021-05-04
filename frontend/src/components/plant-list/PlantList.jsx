@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PlantList.css';
 import { Link } from "react-router-dom"
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import axios from 'axios';
 import Loading from '../loading/Loading';
 import MessageBox from '../message-box/MessageBox';

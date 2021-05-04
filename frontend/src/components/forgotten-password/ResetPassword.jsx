@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TextInput from "../text-input/TextInput";
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import { Link } from "react-router-dom";
 
 class ResetPassword extends Component {

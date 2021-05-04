@@ -31,11 +31,11 @@ const getUserById = async (req, res) => {
         res.status(500).json({ message: error });
     }
 
-    try {
+    /*try {
         return res.status(200).send(userToFind);
     } catch (error) {
         res.status(500).json({ message: error });
-    }
+    }*/
 }
 
 /**
