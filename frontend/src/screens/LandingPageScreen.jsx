@@ -12,6 +12,7 @@ import Loading from '../components/loading/Loading';
 
 // Helpers
 import { daysLeft } from '../helpers/countDays';
+import MessageBox from "../components/message-box/MessageBox";
 
 // const plants = [
 //     {
@@ -91,8 +92,8 @@ const LandingPageScreen = () => {
     useEffect(async () => {
         // dispatch(listUsers());
         setLoading(true)
-        const { data } = await axios.get('/plants')
         try {
+            const { data } = await axios.get('/plants')
             setPlants(data)
             setLoading(false)
         } catch (error) {
@@ -168,7 +169,7 @@ const LandingPageScreen = () => {
 
     return (
         <div>
-            {error &&  'something went wrong'}
+            {error &&  <MessageBox variant="danger">Something went wrong</MessageBox>}
             <div className="cards">
                 <form className="plant-sort">
                     <label htmlFor="plant-sort">Sort by</label>

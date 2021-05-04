@@ -18,11 +18,9 @@ class PlantList extends Component {
         this.setState({loading: true})
         const { data } = await axios.get('/plants')
         try {
-            this.setState({plants: data})
-            this.setState({loading: false})
+            this.setState({plants: data, loading: false})
         } catch (error) {
-            this.setState({loading: false})
-            this.setState({error: error})
+            this.setState({loading: false, error: error})
         }
         const plantArray = this.state.plants;
         const plants = plantArray.map(plant => (
