@@ -74,8 +74,10 @@ header {
 
 .login-btn {
     padding: .3em 1em;
-    border: 1px solid var(--clr-button-primary);
+    border: 2px solid var(--clr-button-primary);
+    background-color: var(--clr-button-primary);
     border-radius: 2px;
+    color: var(--clr-white);
 }
 
 .login-btn::after {
@@ -83,8 +85,9 @@ header {
 }
 
 .login-btn:hover {
-    color: white;
-    background-color: var(--clr-button-primary);
+    color: black;
+    border: 2px solid var(--clr-button-primary);
+    background-color: transparent;
 }
 
 @media screen and (min-width: 470px) {
