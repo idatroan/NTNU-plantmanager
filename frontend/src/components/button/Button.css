@@ -5,7 +5,7 @@
 }
 
 .button {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     gap: 1em;
     padding: .8em 1.6em;
@@ -15,6 +15,10 @@
     border: none;
     border-radius: 2px;
     cursor: pointer;
+}
+
+.button + .button {
+    margin-left: 1em;
 }
 
 .button:hover {
