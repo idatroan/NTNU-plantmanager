@@ -26,3 +26,7 @@ footer p {
         flex-direction: row;
     }
 }
+
+hr {
+    margin: 1em 0;
+}
