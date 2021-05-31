@@ -1,5 +1,3 @@
-// @ts-check
-
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
@@ -22,9 +20,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const validPassword = async (password, hashedPassword) => {
     const compare = await bcrypt.compare(password, hashedPassword);
     return compare;
-}
-
-
+};
 
 /**
  * Generates a hashed password using bcrypt library
@@ -34,8 +30,7 @@ const validPassword = async (password, hashedPassword) => {
 const genPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     return hashedPassword;
-}
-
+};
 
 /**
  * Issue the JWT with user info
@@ -43,23 +38,22 @@ const genPassword = async (password) => {
  * @returns {Object} - Object with the signed token
  */
 const issueJWT = (user) => {
+    const payload = {
+        id: user._id,
+        firstName: user.firstName,
+        role: user.role,
+        email: user.email,
+    };
 
-  const payload = {
-    id: user._id,
-    firstName: user.firstName,
-    role: user.role,
-    email: user.email
-  };
+    const signedToken = jsonwebtoken.sign(payload, process.env.PRIVATE_KEY);
 
-  const signedToken = jsonwebtoken.sign(payload, process.env.PRIVATE_KEY);
-
-  return {
-    token: signedToken
-  }
-}
+    return {
+        token: signedToken,
+    };
+};
 
 module.exports = {
     validPassword,
     genPassword,
-    issueJWT
-}
+    issueJWT,
+};
