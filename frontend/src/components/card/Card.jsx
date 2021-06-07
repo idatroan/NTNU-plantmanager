@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import './Card.css';
 import Button from '../button/Button';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 
 const Card = ({
-    imageSrc = "assets/img/default-plant.jpg", 
+    imageSrc = "assets/img/default-plant.jpg",
     altText = "default plant",
     header,
     subheader,
@@ -23,7 +22,7 @@ const Card = ({
         const gardener = userInfo.user.role === 'gardener';
         canViewWaterBtn = manager || gardener;
     }
-    
+
     const warning = (fertilizing === 0) || (watering === 0);
     const danger = (fertilizing < 0) || (watering < 0);
     const wateringToday = watering === 0;

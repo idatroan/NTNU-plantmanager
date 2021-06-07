@@ -41,43 +41,43 @@ const LoginScreen = (props) => {
 
     return (
         <div className="centered-container">
-            {error && <MessageBox className="login__error" variant="danger">{error}</MessageBox>}
             <div className="component-container">
-            <div className="form">
-                <h1>Login</h1>
-                <Link to="/forgot">Forgot password</Link>
-                <span>Don't have an account? <Link to="/register">Register here</Link></span>
+                {error && <MessageBox className="login__error" variant="danger">{error}</MessageBox>}
+                <div className="form">
+                    <h1>Login</h1>
+                    <Link to="/forgot">Forgot password</Link>
+                    <span>Don't have an account? <Link to="/register">Register here</Link></span>
 
-                <Formik 
-                    initialValues={{
-                        email: '',
-                        password: '',
-                    }}
-                    validationSchema={Yup.object({
-                        email: Yup.string()
-                            .email('Invalid email address!')
-                            .required('Email is required!'),
-                        password: Yup.string()
-                            .required('Password is required!'),
-                    })}
-                    onSubmit={(values, { setSubmitting, resetForm }) => {
-                        const email = values.email;
-                        const password = values.password;
-                        setSubmitting(true);
-                        dispatch(login(email, password));
-                        setSubmitting(false);
-                        resetForm();
-                    }}
-                >
-                    {props => (
-                        <Form>
-                            <TextField label="Email" name="email" type="email" id="email" />
-                            <PasswordField label="Password" name="password" id="password"/>
-                            <Button type="submit" value="Login" variant="primary" loading={props.isSubmitting} />
-                        </Form>
-                    )}
-                </Formik>
-            </div>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        validationSchema={Yup.object({
+                            email: Yup.string()
+                                .email('Invalid email address!')
+                                .required('Email is required!'),
+                            password: Yup.string()
+                                .required('Password is required!'),
+                        })}
+                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                            const email = values.email;
+                            const password = values.password;
+                            setSubmitting(true);
+                            dispatch(login(email, password));
+                            setSubmitting(false);
+                            resetForm();
+                        }}
+                    >
+                        {props => (
+                            <Form>
+                                <TextField label="Email" name="email" type="email" id="email" />
+                                <PasswordField label="Password" name="password" id="password" />
+                                <Button type="submit" value="Login" variant="primary" loading={props.isSubmitting} />
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
             </div>
         </div>
     )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import TextInput from "../text-input/TextInput";
 import Button from "../button/Button";
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -41,41 +40,41 @@ class ForgotPassword extends Component {
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
                 {emailSent ? <MessageBox variant="success">E-mail with reset instructions on it's way!</MessageBox> : (
                     <div className="form">
-                    <Formik 
-                        initialValues={{
-                            email: '',
-                        }}
-                        validationSchema={Yup.object({
-                            email: Yup.string()
-                                .email('Invalid email address!')
-                                .required('Email is required!'),
-                        })}
-                        onSubmit={ async (values, { setSubmitting, resetForm }) => {
-                            const email = values.email;
-                            try {
-                                setSubmitting(true);
-                                const message = await axios.post('/forgot', { email: email });
-                                console.log(message);
-                                setSubmitting(false);
-                                resetForm();
-                                this.setState({ error: '', emailSent: true });
-                            } catch (err) {
-                                setSubmitting(false);
-                                console.error(err.response.statusText)
-                                this.setState({
-                                    error: err.response.statusText
-                                })
-                            }
-                        }}
-                    >
-                        {props => (
-                            <Form>
-                                <TextField label="Enter your email" name="email" type="email" id="email" />
-                                <Button type="submit" value="Reset" variant="primary" loading={props.isSubmitting} />
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
+                        <Formik
+                            initialValues={{
+                                email: '',
+                            }}
+                            validationSchema={Yup.object({
+                                email: Yup.string()
+                                    .email('Invalid email address!')
+                                    .required('Email is required!'),
+                            })}
+                            onSubmit={async (values, { setSubmitting, resetForm }) => {
+                                const email = values.email;
+                                try {
+                                    setSubmitting(true);
+                                    const message = await axios.post('/forgot', { email: email });
+                                    console.log(message);
+                                    setSubmitting(false);
+                                    resetForm();
+                                    this.setState({ error: '', emailSent: true });
+                                } catch (err) {
+                                    setSubmitting(false);
+                                    console.error(err.response.statusText)
+                                    this.setState({
+                                        error: err.response.statusText
+                                    })
+                                }
+                            }}
+                        >
+                            {props => (
+                                <Form>
+                                    <TextField label="Enter your email" name="email" type="email" id="email" />
+                                    <Button type="submit" value="Reset" variant="primary" loading={props.isSubmitting} />
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
                 )}
             </>
         )

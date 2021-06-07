@@ -11,23 +11,25 @@
 }
 
 body {
-  margin: 0;
-  line-height: 1.6;
-  font-size: 16px;
-  background-color: #f2f2f2;
-  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
+    background-color: #f2f2f2;
+    font-family: 'Poppins', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 
 img {
     max-width: 100%;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     margin-bottom: 1em;
 }
 
@@ -59,8 +61,8 @@ select {
     display: block;
     border: none;
     background-color: #f2f2f2;
-    padding: .8em 1.8em;
-    margin: .5em 0 1.5em 0;
+    padding: 0.8em 1.8em;
+    margin: 0.5em 0 1.5em 0;
 }
 
 .component-container {

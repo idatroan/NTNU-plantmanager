@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 // Actions
@@ -7,71 +7,11 @@ import { getPlants as listPlants } from '../redux/actions/plantActions';
 
 // Components
 import Card from "../components/card/Card"
-import PlantCard from "../components/plant-card/PlantCard";
 import Loading from '../components/loading/Loading';
 
 // Helpers
 import { daysLeft } from '../helpers/countDays';
 import MessageBox from "../components/message-box/MessageBox";
-
-// const plants = [
-//     {
-//         _id: 1,
-//         title: "Grønne leif",
-//         subtitle: "Aloe vera",
-//         watering: 5,
-//         fertilizing: 46,
-//     },
-//     {
-//         _id: 2,
-//         title: "Gule guri",
-//         subtitle: "Thymus",
-//         watering: 8,
-//         fertilizing: 12,
-//     },
-//     {
-//         _id: 3,
-//         title: "Lilla laila",
-//         subtitle: "Celastrus",
-//         watering: 12,
-//         fertilizing: 1,
-//     },
-//     {
-//         _id: 4,
-//         title: "Blåe ola",
-//         subtitle: "Lavandula",
-//         watering: 1,
-//         fertilizing: 59,
-//     },
-//     {
-//         _id: 5,
-//         title: "Røde øde",
-//         subtitle: "Populus",
-//         watering: -3,
-//         fertilizing: 134,
-//     },
-//     {
-//         _id: 6,
-//         title: "Turkise lise",
-//         subtitle: "Crocus",
-//         watering: 12,
-//         fertilizing: 40,
-//     },
-//     {
-//         _id: 7,
-//         title: "Hvite pelle",
-//         subtitle: "Adonis",
-//         watering: 0,
-//         fertilizing: -4,
-//     },
-//     {
-//         _id: 8,
-//         title: "Oransje kari",
-//         subtitle: "Betula",
-//         watering: 3,
-//         fertilizing: 0,
-//     }
-// ]
 
 const LandingPageScreen = () => {
 
@@ -113,7 +53,7 @@ const LandingPageScreen = () => {
                 }
             })
         }
-        
+
         if (JSON.parse(localStorage.getItem('notify'))) {
             plants.forEach(plant => {
                 let lastWatered = daysLeft(plant.lastWateredAtTime, plant.waterFrequency)
@@ -128,13 +68,13 @@ const LandingPageScreen = () => {
                     localStorage.setItem('notified', 'true')
                     localStorage.setItem('notify', 'false')
                 }
-                else if(lastFertilized < 0) {
+                else if (lastFertilized < 0) {
                     alert(`Fertilizing for ${plant.name} is overdue by ${lastFertilized} days!`)
                     localStorage.setItem('notified', 'true')
                     localStorage.setItem('notify', 'false')
-                    
+
                 }
-                else if(lastFertilized === 0) {
+                else if (lastFertilized === 0) {
                     alert(`${plant.name} need fertilizing today!`)
                     localStorage.setItem('notified', 'true')
                     localStorage.setItem('notify', 'false')
@@ -162,13 +102,13 @@ const LandingPageScreen = () => {
     }
 
     const plantCards = plants.map(plant => {
-        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id}/>
+        return <Card key={plant._id} header={plant.name} subheader={plant.type} watering={daysLeft(plant.lastWateredAtTime, plant.waterFrequency)} fertilizing={daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)} _id={plant._id} />
     })
 
 
     return (
         <div>
-            {error &&  <MessageBox variant="danger">Something went wrong</MessageBox>}
+            {error && <MessageBox variant="danger">Something went wrong</MessageBox>}
             <div className="cards">
                 <form className="plant-sort">
                     <label htmlFor="plant-sort">Sort by</label>
