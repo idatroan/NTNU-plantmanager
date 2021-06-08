@@ -18,6 +18,7 @@ import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import PlantScreen from "./screens/PlantScreen";
 import CreatePlantScreen from "./screens/CreatePlantScreen";
 import Footer from "./components/footer/Footer";
+import PlantEditScreen from "./screens/PlantEditScreen";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/forgot" component={ForgotPasswordScreen} />
                     <Route path="/reset/:id" component={ResetPasswordScreen} />
                     <Route path="/plants/create" component={CreatePlantScreen} />
+                    <Route path="/plants/edit/:id" component={PlantEditScreen} />
                     <Route path="/plants/:id" component={PlantScreen} />
                 </Switch>
             </Container>

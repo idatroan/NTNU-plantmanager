@@ -15,16 +15,16 @@ export const getPlants = () => async (dispatch) => {
 
         const { data } = await axios.get('/plants');
 
-        dispatch({ 
+        dispatch({
             type: actionTypes.GET_PLANT_SUCCESS,
             payload: data
         });
     } catch (error) {
         dispatch({
             type: actionTypes.GET_PLANT_FAIL,
-            payload: 
-                error.response && error.response.data.message 
-                    ? error.response.data.message 
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }
@@ -36,16 +36,16 @@ export const getPlantDetails = (id) => async (dispatch) => {
     try {
         const { data } = await axios.get(`/plants/${id}`);
 
-        dispatch({ 
+        dispatch({
             type: actionTypes.GET_PLANT_DETAILS_SUCCESS,
             payload: data
         });
     } catch (error) {
         dispatch({
             type: actionTypes.GET_PLANT_DETAILS_FAIL,
-            payload: 
-                error.response && error.response.data.message 
-                    ? error.response.data.message 
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }
@@ -61,9 +61,9 @@ export const createPlant = (name, location, waterFrequency, fertilizingFrequency
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
         const { data } = await axios.post('/register', {
-            name, 
-            location, 
-            waterFrequency, 
+            name,
+            location,
+            waterFrequency,
             fertilizingFrequency,
             light
         }, {
@@ -77,14 +77,14 @@ export const createPlant = (name, location, waterFrequency, fertilizingFrequency
         dispatch({
             type: actionTypes.PLANT_CREATE_FAIL,
             payload:
-                error.response && error.response.data.message 
-                    ? error.response.data.message 
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }
 };
 
-export const updatePlant = (name, location, waterFrequency, fertilizingFrequency, light, id) => async (dispatch) => {
+export const updatePlant = (name, plantType, location, waterFrequency, fertilizingFrequency, light, id) => async (dispatch) => {
 
     dispatch({
         type: actionTypes.PLANT_UPDATE_REQUEST
@@ -92,10 +92,11 @@ export const updatePlant = (name, location, waterFrequency, fertilizingFrequency
     try {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-        const { data } = await axios.put(`/plants/${id}`, {
-            name, 
-            location, 
-            waterFrequency, 
+        const { data } = await axios.put(`/plant/${id}`, {
+            name,
+            plantType,
+            location,
+            waterFrequency,
             fertilizingFrequency,
             light
         }, {
@@ -109,8 +110,8 @@ export const updatePlant = (name, location, waterFrequency, fertilizingFrequency
         dispatch({
             type: actionTypes.PLANT_UPDATE_FAIL,
             payload:
-                error.response && error.response.data.message 
-                    ? error.response.data.message 
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }
@@ -118,7 +119,7 @@ export const updatePlant = (name, location, waterFrequency, fertilizingFrequency
 
 export const plantDelete = (id) => async (dispatch) => {
     dispatch({
-        type: actionTypes.PLANT_DELETE_REQUEST, 
+        type: actionTypes.PLANT_DELETE_REQUEST,
         payload: id
     })
     try {
@@ -135,8 +136,8 @@ export const plantDelete = (id) => async (dispatch) => {
         dispatch({
             type: actionTypes.PLANT_DELETE_FAIL,
             payload:
-                error.response && error.response.data.message 
-                    ? error.response.data.message 
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }

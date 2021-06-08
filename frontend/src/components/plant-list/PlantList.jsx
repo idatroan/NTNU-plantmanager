@@ -27,7 +27,7 @@ class PlantList extends Component {
             <div className="plant">
                 <div>{plant.name}</div>
                 <div>{plant.type}</div>
-                <Link to="#">Edit</Link>
+                <Link to={`/plants/edit/${plant._id}`}>Edit</Link>
                 <Button value="Delete" variant="danger" size="small"/>
             </div>
         ))
