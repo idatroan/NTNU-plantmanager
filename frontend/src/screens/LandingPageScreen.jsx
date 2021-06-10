@@ -43,43 +43,44 @@ const LandingPageScreen = () => {
     }, []);
 
     if (userInfo) {
-        if (userInfo.user.role === 'user') return;
-        if ((JSON.parse(localStorage.getItem('notified')) === false) || !localStorage.getItem('notified')) {
-            plants.forEach(plant => {
-                let lastWatered = daysLeft(plant.lastWateredAtTime, plant.waterFrequency)
-                let lastFertilized = daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)
-                if ((lastWatered === 0) || (lastWatered < 0) || (lastFertilized === 0) || (lastFertilized < 0)) {
-                    localStorage.setItem('notify', 'true')
-                }
-            })
-        }
+        if ((userInfo.user.role === 'manager') || (userInfo.user.role === 'gardener')) {
+            if ((JSON.parse(localStorage.getItem('notified')) === false) || !localStorage.getItem('notified')) {
+                plants.forEach(plant => {
+                    let lastWatered = daysLeft(plant.lastWateredAtTime, plant.waterFrequency)
+                    let lastFertilized = daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)
+                    if ((lastWatered === 0) || (lastWatered < 0) || (lastFertilized === 0) || (lastFertilized < 0)) {
+                        localStorage.setItem('notify', 'true')
+                    }
+                })
+            }
 
-        if (JSON.parse(localStorage.getItem('notify'))) {
-            plants.forEach(plant => {
-                let lastWatered = daysLeft(plant.lastWateredAtTime, plant.waterFrequency)
-                let lastFertilized = daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)
-                if (lastWatered === 0) {
-                    alert(`${plant.name} need watering today!`)
-                    localStorage.setItem('notified', 'true')
-                    localStorage.setItem('notify', 'false')
-                }
-                else if (lastWatered < 0) {
-                    alert(`Watering for ${plant.name} is overdue by ${lastWatered} days!`)
-                    localStorage.setItem('notified', 'true')
-                    localStorage.setItem('notify', 'false')
-                }
-                else if (lastFertilized < 0) {
-                    alert(`Fertilizing for ${plant.name} is overdue by ${lastFertilized} days!`)
-                    localStorage.setItem('notified', 'true')
-                    localStorage.setItem('notify', 'false')
+            if (JSON.parse(localStorage.getItem('notify'))) {
+                plants.forEach(plant => {
+                    let lastWatered = daysLeft(plant.lastWateredAtTime, plant.waterFrequency)
+                    let lastFertilized = daysLeft(plant.lastFertilizedAtTime, plant.fertilizingFrequency)
+                    if (lastWatered === 0) {
+                        alert(`${plant.name} need watering today!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                    else if (lastWatered < 0) {
+                        alert(`Watering for ${plant.name} is overdue by ${lastWatered} days!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                    else if (lastFertilized < 0) {
+                        alert(`Fertilizing for ${plant.name} is overdue by ${lastFertilized} days!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
 
-                }
-                else if (lastFertilized === 0) {
-                    alert(`${plant.name} need fertilizing today!`)
-                    localStorage.setItem('notified', 'true')
-                    localStorage.setItem('notify', 'false')
-                }
-            })
+                    }
+                    else if (lastFertilized === 0) {
+                        alert(`${plant.name} need fertilizing today!`)
+                        localStorage.setItem('notified', 'true')
+                        localStorage.setItem('notify', 'false')
+                    }
+                })
+            }
         }
     }
 

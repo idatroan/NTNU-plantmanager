@@ -71,9 +71,9 @@ const updateUserById = async (req, res) => {
 
         const user = await User.findById(req.params.id);
         const { firstName, lastName, role, email } = req.body;
-        const emailInDb = await User.findOne({ email: req.body.email });
+        // const emailInDb = await User.findOne({ email: req.body.email });
 
-        if (emailInDb) return res.status(400).json('Email is taken!');
+        // if (emailInDb) return res.status(400).json('Email is taken!');
 
         // Må finne en løsning slik at en bruker kan bruke opp igjen sin gamle email
         // if(req.user.id === user._id)
