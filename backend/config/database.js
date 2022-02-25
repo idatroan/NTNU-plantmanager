@@ -7,26 +7,25 @@ const prodConnection = process.env.DB_STRING_PROD;
 
 // Connect to the correct environment database
 if (process.env.NODE_ENV === 'production') {
-    mongoose.connect(prodConnection, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: true
-    });
+  mongoose.connect(prodConnection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+  });
 
-    mongoose.connection.on('connected', () => {
-        console.log('Database connected');
-    });
+  mongoose.connection.on('connected', () => {
+    console.log('MongoDB Database connected');
+  });
 } else {
-    mongoose.connect(devConnection, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: true
-    });
+  mongoose.connect(devConnection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+  });
 
-    mongoose.connection.on('connected', () => {
-        console.log('Database connected');
-    });
+  mongoose.connection.on('connected', () => {
+    console.log('Dev Database connected');
+  });
 }
-
